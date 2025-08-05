@@ -58,3 +58,9 @@
     border-radius: 8px;
     height: 48px;
 }
+
+.submit-btn:hover {
+    color: #00A859;
+    background: #FFFFFF;
+    border: 1px solid #00A859;
+}
