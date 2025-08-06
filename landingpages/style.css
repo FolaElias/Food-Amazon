@@ -18,7 +18,7 @@
     height: 100vh;
 }
 
-.login-text, .popular-text, .organic-text {
+.login-text, .popular-text, .organic-text, .high-text {
     font-family: "Roboto", sans-serif;
     color: #00A859;
 }
