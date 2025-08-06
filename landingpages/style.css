@@ -18,9 +18,9 @@
     height: 100vh;
 }
 
-.login-text{
+.login-text, .popular-text, .organic-text {
     font-family: "Roboto", sans-serif;
-    color: #00A859 !important;
+    color: #00A859;
 }
 
 .sign-btn, .forget-btn {
@@ -63,4 +63,13 @@
     color: #00A859;
     background: #FFFFFF;
     border: 1px solid #00A859;
+}
+
+.popular-text, .organic-text{
+    color: #0F0B0B;
+}
+
+.organic-card img{
+    width: 100%;
+
 }
