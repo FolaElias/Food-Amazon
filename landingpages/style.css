@@ -18,7 +18,7 @@
     height: 100vh;
 }
 
-.login-text, .popular-text, .organic-text, .high-text, .bulk {
+.login-text, .popular-text, .organic-text, .high-text, .bulk, .offer {
     font-family: "Roboto", sans-serif;
     color: #00A859;
 }
@@ -65,7 +65,7 @@
     border: 1px solid #00A859;
 }
 
-.popular-text, .organic-text{
+.popular-text, .organic-text, .offer{
     color: #0F0B0B;
 }
 
