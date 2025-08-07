@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Calligraffitti&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 
 * {
     font-family: "Inter", sans-serif;
@@ -18,7 +18,7 @@
     height: 100vh;
 }
 
-.login-text, .popular-text, .organic-text, .high-text {
+.login-text, .popular-text, .organic-text, .high-text, .bulk {
     font-family: "Roboto", sans-serif;
     color: #00A859;
 }
@@ -72,4 +72,31 @@
 .organic-card img{
     width: 100%;
 
+}
+
+.snacks {
+    color: #F58634;
+}
+
+.italic-text {
+    height: auto;
+    border-left: 7px solid #82CB0C;
+}
+
+.sign {
+    font-family: "Calligraffitti", cursive;
+    margin-bottom: -5px;
+}
+
+.bulk-order {
+    width: 100%;
+    height: auto;
+    background-color: #EFFFE5;
+}
+
+.bulk-card{
+    background-color: #FFFFFF;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
 }
