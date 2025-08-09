@@ -1,102 +1,194 @@
-@import url('https://fonts.googleapis.com/css2?family=Calligraffitti&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Calligraffitti&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
 
 * {
-    font-family: "Inter", sans-serif;
+  font-family: "Inter", sans-serif;
 }
 
 .row {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
-.form-pg{
-    padding-right: 200px !important;
+.form-pg {
+  padding-right: 200px !important;
 }
 
 .logimg {
-    width: 100%;
-    height: 100vh;
+  width: 100%;
+  height: 100vh;
 }
 
-.login-text, .popular-text, .organic-text, .high-text, .bulk, .offer {
-    font-family: "Roboto", sans-serif;
-    color: #00A859;
+.login-text,
+.popular-text,
+.organic-text,
+.high-text,
+.bulk,
+.offer,
+.sub, .footer-h6, h6 {
+  font-family: "Roboto", sans-serif;
+  color: #00a859;
 }
 
-.sign-btn, .forget-btn {
-    background: none;
-    outline: none;
-    border: none;
-    color: #F58634;
-    cursor: pointer;
+.sign-btn,
+.forget-btn {
+  background: none;
+  outline: none;
+  border: none;
+  color: #f58634;
+  cursor: pointer;
 }
 
-.input-area{
-    border-radius: none;
-    border: none;
-    border-bottom: 1px solid #E8ECEF;
+.input-area {
+  border-radius: none;
+  border: none;
+  border-bottom: 1px solid #e8ecef;
 }
 
 ::placeholder {
-    color: #7C797A !important;
-    font-family: "Inter", sans-serif !important;
+  color: #7c797a !important;
+  font-family: "Inter", sans-serif !important;
 }
 
 .checkbox {
-    width: 24px;
-    height: 24px;
+  width: 24px;
+  height: 24px;
 }
 
-.forget-btn{
-    color: #00A859;
+.forget-btn {
+  color: #00a859;
 }
 
 .submit-btn {
-    background: #00A859;
-    color: #FFFFFF;
-    border: none;
-    border-radius: 8px;
-    height: 48px;
+  background: #00a859;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  height: 48px;
 }
 
 .submit-btn:hover {
-    color: #00A859;
-    background: #FFFFFF;
-    border: 1px solid #00A859;
+  color: #00a859;
+  background: #ffffff;
+  border: 1px solid #00a859;
 }
 
-.popular-text, .organic-text, .offer{
-    color: #0F0B0B;
+.popular-text,
+.organic-text,
+.offer {
+  color: #0f0b0b;
 }
 
-.organic-card img{
-    width: 100%;
-
+.organic-card img {
+  width: 100%;
 }
 
 .snacks {
-    color: #F58634;
+  color: #f58634;
 }
 
 .italic-text {
-    height: auto;
-    border-left: 7px solid #82CB0C;
+  height: auto;
+  border-left: 7px solid #82cb0c;
 }
 
 .sign {
-    font-family: "Calligraffitti", cursive;
-    margin-bottom: -5px;
+  font-family: "Calligraffitti", cursive;
+  margin-bottom: -5px;
 }
 
 .bulk-order {
-    width: 100%;
-    height: auto;
-    background-color: #EFFFE5;
+  width: 100%;
+  height: auto;
+  background-color: #efffe5;
 }
 
-.bulk-card{
-    background-color: #FFFFFF;
-    height: auto;
-    border-radius: 10px;
-    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
+.bulk-card {
+  background-color: #ffffff;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
+}
+
+.newsletter {
+  background-color: #efffe5;
+  height: auto;
+  padding-top: 150px;
+  padding-bottom: 100px;
+}
+
+@media (max-width: 991.98px) {
+  .newsletter {
+    padding-top: 80px;
+    padding-bottom: 60px;
+  }
+  .text-input {
+    width: 90vw;
+    max-width: 500px;
+    padding: 1.5rem 1rem;
+  }
+  .newsletter-image img {
+    min-height: 220px;
+    object-fit: cover;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .newsletter {
+    padding-top: 40px;
+    padding-bottom: 30px;
+  }
+  .text-input {
+    width: 98vw;
+    max-width: 98vw;
+    padding: 1rem 0.5rem;
+  }
+  .newsletter-image img {
+    min-height: 140px;
+    object-fit: cover;
+  }
+  .text-input p.fw-bold.fs-1 {
+    font-size: 1.3rem !important;
+  }
+  .text-input p.fs-5 {
+    font-size: 0.95rem !important;
+  }
+  .input-sec {
+    flex-direction: column !important;
+    gap: 0.5rem;
+  }
+  .input-sec-input {
+    width: 100% !important;
+    margin-bottom: 0.5rem;
+  }
+}
+
+
+.text-input {
+  width: 600px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.input-sec {
+  width: auto;
+  height: auto;
+  background-color: #ffffff;
+  border-radius: 12px;
+}
+
+.input-sec-input {
+  border: none;
+}
+
+footer {
+  background-color: #1B2432;
+}
+
+.footer-h6,h6 {
+  color: #ffffff;
+}
+
+.links p {
+  color: #A6B6B6;
 }
