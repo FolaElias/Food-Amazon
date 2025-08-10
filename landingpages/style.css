@@ -149,6 +149,16 @@ footer {
   color: #A6B6B6;
 }
 
+.increament-div span {
+  border: 1px solid #C4D1D0;
+}
+
+.increase {
+  cursor: pointer;
+  border: none;
+  background-color: #C4D1D0;
+}
+
 
 
 @media (max-width: 991.98px) {
