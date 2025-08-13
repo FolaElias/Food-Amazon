@@ -204,6 +204,10 @@ footer {
   color: #131717;
 }
 
+.price-details {
+  border-top: 1px solid #C4D1D0;
+  border-bottom: 1px solid #C4D1D0;
+}
 
 @media (max-width: 991.98px) {
  .text-input {
