@@ -4,6 +4,10 @@
   font-family: "Inter", sans-serif;
 }
 
+nav ul li {
+  margin-left: 15px;
+}
+
 .row {
   margin: 0;
   padding: 0;
@@ -24,7 +28,7 @@
 .high-text,
 .bulk,
 .offer,
-.sub, .footer-h6, h6 {
+.sub, .footer-h6, h6, .text-button h1, .wish {
   font-family: "Roboto", sans-serif;
   color: #00a859;
 }
@@ -78,6 +82,33 @@
   color: #0f0b0b;
 }
 
+.hero-section {
+  height:100vh;
+  position: relative;
+}
+
+.hero-bottom img {
+  height: 100%
+}
+
+.hero-bottom{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.text-button span{
+  color: #f58634;
+}
+
+.text-button button{
+  background-color: #f58634;
+  cursor: pointer;
+  border: none;
+  border-radius: 7px;
+}
+
 .organic-card img {
   width: 100%;
 }
@@ -105,6 +136,7 @@
 .bulk-card {
   background-color: #ffffff;
   height: auto;
+  width: 100%;
   border-radius: 10px;
   box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
 }
@@ -177,3 +209,10 @@ footer {
  }
 }
 
+
+@media (max-width: 600px) {
+.bulk-card{
+  width: 100% !important;
+}
+
+}
