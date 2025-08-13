@@ -28,7 +28,7 @@ nav ul li {
 .high-text,
 .bulk,
 .offer,
-.sub, .footer-h6, h6, .text-button h1, .wish, .bill {
+.sub, .footer-h6, h6, .text-button h1, .wish, .bill, .about {
   font-family: "Roboto", sans-serif;
   color: #00a859;
 }
@@ -209,7 +209,7 @@ footer {
   border-bottom: 1px solid #C4D1D0;
 }
 
-.done-btn, .cancel-btn:hover {
+.done-btn, .cancel-btn:hover, .add-cart {
   background-color: #00A859;
   color: #ffffff;
   border: none;
@@ -220,7 +220,7 @@ footer {
   cursor: pointer;
 }
 
-.cancel-btn, .done-btn:hover {
+.cancel-btn, .done-btn:hover, .add-cart:hover {
   background-color: #ffffff;
   color: #00A859;
   border: 1px solid #00A859;
