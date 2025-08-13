@@ -209,6 +209,47 @@ footer {
   border-bottom: 1px solid #C4D1D0;
 }
 
+.done-btn, .cancel-btn:hover {
+  background-color: #00A859;
+  color: #ffffff;
+  border: none;
+  outline: none;
+  width: 200px;
+  height: 60px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.cancel-btn, .done-btn:hover {
+  background-color: #ffffff;
+  color: #00A859;
+  border: 1px solid #00A859;
+  outline: none;
+  width: 200px;
+  height: 60px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn-checks {
+  border-bottom: 1px solid #C4D1D0;
+}
+
+.pay-btn {
+  background-color: #F58634;
+  color: #ffffff;
+  border: none; 
+  outline: none;
+  border-radius: 5px;
+  height: 60px;
+}
+
+.pay-btn:hover {
+  background-color: #ffffff;
+  color: #F58634;
+  border: 1px solid #F58634;
+}
+
 @media (max-width: 991.98px) {
  .text-input {
   width: 100%;
@@ -231,4 +272,11 @@ footer {
   width: 100% !important;
 }
 
+.btns {
+  display: flex;
+}
+
+.cancel-btn, .done-btn {
+  width: 50% !important; 
+}
 }
