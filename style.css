@@ -191,7 +191,7 @@ footer {
   background-color: #C4D1D0;
 }
 
-.check-input input, select {
+.check-input input, select, .rating-col2 input {
   height: 60px;
   border: 1px solid #C4D1D0 !important;
 }
@@ -250,6 +250,19 @@ footer {
   border: 1px solid #F58634;
 }
 
+.rating-box {
+  box-shadow: 5px 5px 5px 5px #C4D1D0;
+  border: 1px solid #C4D1D0;
+  border-radius: 10px;
+  background-color: #ffffff;
+}
+
+.rating-box:hover {
+  transition: 2s ease;
+  transform: scale(1.2);
+  border: none;
+}
+
 @media (max-width: 991.98px) {
  .text-input {
   width: 100%;
@@ -288,5 +301,16 @@ br {
 .high-p {
   font-size: 30px;
   text-align: center;
+}
+
+.rating-col img {
+  width: 85%;
+}
+.bttext{
+  flex-direction: column;
+}
+
+.bttext button {
+  width: 100% !important;
 }
 }
