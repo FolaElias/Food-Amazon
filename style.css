@@ -267,6 +267,7 @@ footer {
 }
 
 
+
 @media (max-width: 600px) {
 .bulk-card{
   width: 100% !important;
@@ -278,5 +279,14 @@ footer {
 
 .cancel-btn, .done-btn {
   width: 50% !important; 
+}
+
+br {
+  display: none;
+}
+
+.high-p {
+  font-size: 30px;
+  text-align: center;
 }
 }
