@@ -8,6 +8,7 @@
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
      <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/9.1.0/mdb.min.css" rel="stylesheet"/>
     <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../animations.css">
 </head>
 <body>
      <!-- navigation bar starts here -->
@@ -51,15 +52,16 @@
 </nav>
 <!-- navigation bar ends here -->
 
-<section>
+<section class="main-body">
+  <section>
     <div class="row px-lg-5 mt-5">
         <!-- image column -->
         <div class="col-sm-12 col-md-12 col-lg-12 col-xl-6">
             <div class="text-center">
-                <img src="../images/coconut.png" class="w-75" alt="">
+                <img src="../images/coconut.png" class="w-75" id="imageReveal" alt="">
             </div>
             <div class="text-center mt-5">
-            <img src="../images/Frame 17990.png" class="w-50" alt="">
+            <img src="../images/Frame 17990.png" class="w-50" id="imageReveal" alt="">
             </div>
             <p class="about fs-4 fw-bold" style="color: #0F0B0B;">About This Product</p>
             <p class="fs-5 mt-4">Indulge in the natural crunch and flavor of our Crunchy Nut Mix, a blend of premium nuts roasted to perfection. This mix includes almonds, cashews, and walnuts, providing a delicious and nutritious snack that is rich in protein and healthy fats.</p>
@@ -90,11 +92,11 @@
               <p class="me-5 fs-4 fw-bold">Quantity:</p>
               <button class="increase px-3"><i class="fa-solid fa-minus fa-2x " style="color: #000000;"></i></button>
               <span class="px-4 py-3 mx-4">1</span>
-              <button class="increase px-3"><i class="fa-solid fa-plus fa-2x " style="color: #000000;"></i></button>
+              <button class="increase2 px-3"><i class="fa-solid fa-plus fa-2x " style="color: #000000;"></i></button>
              </div>
              <p class="fs-5 mt-4">Our Date-Coconut Delight combines the rich sweetness of organic date syrup with the tropical flavor of coconut flakes, creating a snack that’s both indulgent and healthy.</p>
-             <button class="add-cart w-100 fs-5 mt-5">Add to Cart</button>
-             <button class="pay-btn w-100 fs-5 mt-4">Check Out</button>
+             <button class="add-cart w-100 fs-5 mt-5" id="fancy">Add to Cart</button>
+             <button class="pay-btn w-100 fs-5 mt-4" id="fancy-2">Check Out</button>
         </div>
     </div>
 
@@ -103,40 +105,40 @@
         <p class="fw-bold fs-4 text-dark">Customer Reviews</p>
         <p class="fs-5 fw-bold text-dark">77 Reviews</p>
         <div>
-          <img src="../images/Rating.png" alt="">
+          <img src="../images/Rating.png" id="imageReveal" alt="">
         </div>
         <div class="d-flex justify-content-between mt-4">
           <p class="fs-5">5 Stars</p>
           <div>
-            <img src="../images/41.png" alt="">
+            <img src="../images/41.png" id="imageReveal" alt="">
           </div>
           <p class="fs-5">37</p>
         </div>
         <div class="d-flex justify-content-between mt-4">
           <p class="fs-5">5 Stars</p>
           <div>
-            <img src="../images/41.png" alt="">
+            <img src="../images/41.png" id="imageReveal" alt="">
           </div>
           <p class="fs-5">37</p>
         </div>
         <div class="d-flex justify-content-between mt-4">
           <p class="fs-5">5 Stars</p>
           <div>
-            <img src="../images/41.png" alt="">
+            <img src="../images/41.png" id="imageReveal" alt="">
           </div>
           <p class="fs-5">37</p>
         </div>
         <div class="d-flex justify-content-between mt-4">
           <p class="fs-5">5 Stars</p>
           <div>
-            <img src="../images/41.png" alt="">
+            <img src="../images/41.png" id="imageReveal" alt="">
           </div>
           <p class="fs-5">37</p>
         </div>
         <div class="d-flex justify-content-between mt-4">
           <p class="fs-5">5 Stars</p>
           <div>
-            <img src="../images/41.png" alt="">
+            <img src="../images/41.png" id="imageReveal" alt="">
           </div>
           <p class="fs-5">37</p>
         </div>
@@ -144,7 +146,7 @@
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 ps-lg-5 rating-col2">
         <p class="fw-bold fs-4 text-dark">How would you rate this?</p>
         <div>
-          <img src="../images/Rating 2.png" alt="">
+          <img src="../images/Rating 2.png" id="imageReveal" alt="">
         </div>
         <!-- rewiew headling input -->
           <p class="fw-bold fs-5 text-dark mt-4">Add a headline</p>
@@ -159,7 +161,7 @@
               <label class="form-label fs-5" for="textAreaExample">Tell us what do you think</label>
             </div>
         </div>
-        <button class="done-btn fs-5 mt-5">Submit Review</button>
+        <button class="done-btn fs-5 mt-5 fadeUp" id="fancy">Submit Review</button>
       </div>
     </div>
 </section>
@@ -170,11 +172,11 @@
     <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
       <div class="rating-box p-5">
         <div>
-          <img src="../images/pfp.png" alt="">
+          <img src="../images/pfp.png" id="imageReveal" alt="">
         </div>
         <p class="fs-5 fw-bold text-dark mt-4">Sarah Taylor</p>
         <div>
-          <img src="../images/Rating.png" alt="">
+          <img src="../images/Rating.png" id="imageReveal" alt="">
         </div>
         <p class="fs-4 fw-bold text-dark mt-5">Organic Fruit Bites</p>
         <p class="fs-5">They're the perfect snack for my kids and I feel great knowing they're eating something healthy and natural.</p>
@@ -183,11 +185,11 @@
     <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
       <div class="rating-box p-5">
         <div>
-          <img src="../images/pfp.png" alt="">
+          <img src="../images/pfp.png" id="imageReveal" alt="">
         </div>
         <p class="fs-5 fw-bold text-dark mt-4">Sarah Taylor</p>
         <div>
-          <img src="../images/Rating.png" alt="">
+          <img src="../images/Rating.png" id="imageReveal" alt="">
         </div>
         <p class="fs-4 fw-bold text-dark mt-5">Organic Fruit Bites</p>
         <p class="fs-5">They're the perfect snack for my kids and I feel great knowing they're eating something healthy and natural.</p>
@@ -196,11 +198,11 @@
     <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
       <div class="rating-box p-5">
         <div>
-          <img src="../images/pfp.png" alt="">
+          <img src="../images/pfp.png" id="imageReveal" alt="">
         </div>
         <p class="fs-5 fw-bold text-dark mt-4">Sarah Taylor</p>
         <div>
-          <img src="../images/Rating.png" alt="">
+          <img src="../images/Rating.png" id="imageReveal" alt="">
         </div>
         <p class="fs-4 fw-bold text-dark mt-5">Organic Fruit Bites</p>
         <p class="fs-5">They're the perfect snack for my kids and I feel great knowing they're eating something healthy and natural.</p>
@@ -209,11 +211,11 @@
      <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
       <div class="rating-box p-5">
         <div>
-          <img src="../images/pfp.png" alt="">
+          <img src="../images/pfp.png" id="imageReveal" alt="">
         </div>
         <p class="fs-5 fw-bold text-dark mt-4">Sarah Taylor</p>
         <div>
-          <img src="../images/Rating.png" alt="">
+          <img src="../images/Rating.png" id="imageReveal" alt="">
         </div>
         <p class="fs-4 fw-bold text-dark mt-5">Organic Fruit Bites</p>
         <p class="fs-5">They're the perfect snack for my kids and I feel great knowing they're eating something healthy and natural.</p>
@@ -222,11 +224,11 @@
      <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
       <div class="rating-box p-5">
         <div>
-          <img src="../images/pfp.png" alt="">
+          <img src="../images/pfp.png" id="imageReveal" alt="">
         </div>
         <p class="fs-5 fw-bold text-dark mt-4">Sarah Taylor</p>
         <div>
-          <img src="../images/Rating.png" alt="">
+          <img src="../images/Rating.png" id="imageReveal" alt="">
         </div>
         <p class="fs-4 fw-bold text-dark mt-5">Organic Fruit Bites</p>
         <p class="fs-5">They're the perfect snack for my kids and I feel great knowing they're eating something healthy and natural.</p>
@@ -235,11 +237,11 @@
      <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
       <div class="rating-box p-5">
         <div>
-          <img src="../images/pfp.png" alt="">
+          <img src="../images/pfp.png" id="imageReveal" alt="">
         </div>
         <p class="fs-5 fw-bold text-dark mt-4">Sarah Taylor</p>
         <div>
-          <img src="../images/Rating.png" alt="">
+          <img src="../images/Rating.png" id="imageReveal" alt="">
         </div>
         <p class="fs-4 fw-bold text-dark mt-5">Organic Fruit Bites</p>
         <p class="fs-5">They're the perfect snack for my kids and I feel great knowing they're eating something healthy and natural.</p>
@@ -247,22 +249,23 @@
     </div>
   </div>
   <div class="text-center mt-5">
-    <button class="done-btn fs-5">Load More</button>
+    <button class="done-btn fs-5 fadeUp" id="fancy">Load More</button>
   </div>
 </section>
-
-  <section class="px-lg-5 px-3 mt-5">
+</section>
+<section class="px-lg-5 px-3 mt-5">
     <p class="fw-bold display-2 text-dark about">Similar Products</p>
     <div class="d-flex justify-content-between bttext">
       <p class="fs-5">Browse our most popular snacks and make your day more beautiful and glorious.</p>
-      <button class="done-btn fs-5">Browse All</button>
+      <button class="done-btn fs-5 fadeUp" id="fancy">Browse All</button>
     </div>
     <div class="row g-0 gx-lg-5 gx-xl-5 gy-5">
     <!-- first card -->
     <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4">
-      <!-- card image  -->
+      <div class="cardAnimate">
+          <!-- card image  -->
       <div class="organic-card">
-        <img src="../images/organic almond delight.png" alt="">
+        <img src="../images/organic almond delight.png" id="imageReveal" alt="">
       </div>
       <!-- like and text  -->
           <!-- text  -->
@@ -280,12 +283,14 @@
          </div>
       <!-- add to cart button  -->
        <button type="button" class="btn btn-outline-success w-100 py-4 fs-5">Add To Cart</button> 
+      </div>
     </div>
 
     <!-- secomd card -->
     <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4">
-      <div class="organic-card">
-        <img src="../images/Berry bliss bites.png" alt="">
+      <div class="cardAnimate">
+        <div class="organic-card">
+        <img src="../images/Berry bliss bites.png" id="imageReveal" alt="">
       </div>
       <!-- like and text  -->
           <!-- text  -->
@@ -303,12 +308,14 @@
          </div>
       <!-- add to cart button  -->
        <button type="button" class="btn btn-outline-success w-100 py-4 fs-5">Add To Cart</button> 
+      </div>
     </div>
 
     <!-- third card  -->
     <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4">
-      <div class="organic-card">
-        <img src="../images/coconut crunchies.png" alt="">
+      <div class="cardAnimate">
+        <div class="organic-card">
+        <img src="../images/coconut crunchies.png" id="imageReveal" alt="">
       </div>
       <!-- like and text  -->
           <!-- text  -->
@@ -325,7 +332,8 @@
           <p class="fs-5">$110</p>
          </div>
       <!-- add to cart button  -->
-       <button type="button" class="btn btn-outline-success w-100 py-4 fs-5">Add To Cart</button> 
+       <button type="button" class="btn btn-outline-success w-100 py-4 fs-5">Add To Cart</button>
+      </div> 
     </div>
    </div>
   </section>

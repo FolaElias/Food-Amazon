@@ -185,7 +185,7 @@ footer {
   border: 1px solid #C4D1D0;
 }
 
-.increase {
+.increase, .increase2 {
   cursor: pointer;
   border: none;
   background-color: #C4D1D0;
@@ -220,7 +220,7 @@ footer {
   cursor: pointer;
 }
 
-.cancel-btn, .done-btn:hover, .add-cart:hover {
+.cancel-btn{
   background-color: #ffffff;
   color: #00A859;
   border: 1px solid #00A859;
@@ -242,12 +242,6 @@ footer {
   outline: none;
   border-radius: 5px;
   height: 60px;
-}
-
-.pay-btn:hover {
-  background-color: #ffffff;
-  color: #F58634;
-  border: 1px solid #F58634;
 }
 
 .rating-box {
@@ -283,6 +277,41 @@ footer {
 
 .imagehousing img {
   width: 100%;
+}
+
+.RomoveBTNN {
+    width: 12px;
+    height: 15px;
+    color: #4D4D4D;
+    border: none;
+    background: transparent;
+}
+.WishlishHead {
+    font-size: 30px;
+    font-weight: bold;
+    line-height: 32px;
+    font-family: "Roboto", sans-serif;
+    color: #0F0B0B;
+}
+.wisslistCArtBtn {
+    border-radius: 5px;
+    background: #00A859;
+    border: #00A859;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 28px;
+}
+.wisslistCArtBtn1 {
+    width: 370px;
+    height: 60px;
+    border-radius: 5px;
+    background: #00A859;
+    border: #00A859;
+    color: #fff;
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 30px;
 }
 
 @media (max-width: 991.98px) {
