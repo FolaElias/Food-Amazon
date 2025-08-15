@@ -1,4 +1,4 @@
-.add-cart, .done-btn, .pay-btn, .increase, .increase2{
+.add-cart, .done-btn, .pay-btn, .increase, .increase2, .submit-btn {
     transition: 200ms ease-in-out transform;
     position: relative;
 }
@@ -131,4 +131,34 @@ transition: 200ms ease-in-out transform;
 
 .cardAnimate:hover {
     transform: translateY(-15px);
+}
+
+#drop-in {
+    animation: drop-in 1s ease 900ms backwards;
+}
+
+@keyframes drop-in {
+    from {
+        opacity: 0;
+        transform: translateY(-100px);
+    }
+    to {
+        opacity: 1;
+        transform: translate(0);
+    }
+}
+
+#drop-out {
+    animation: drop-out 1s ease 900ms backwards;
+}
+
+@keyframes drop-out {
+    from {
+        opacity: 0;
+        transform: translateY(100px);
+    }
+    to {
+        opacity: 1;
+        transform: translate(0);
+    }
 }
