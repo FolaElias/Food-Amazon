@@ -263,6 +263,28 @@ footer {
   border: none;
 }
 
+.btn-later button {
+  background: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  color: #4D4D4D;
+  border-bottom: 1px solid #4D4D4D;
+}
+
+.item-btn {
+  border-bottom: 2px solid #C4D1D0;
+}
+
+.imagehousing {
+  width: 200px;
+  height: 200px;
+}
+
+.imagehousing img {
+  width: 100%;
+}
+
 @media (max-width: 991.98px) {
  .text-input {
   width: 100%;
@@ -312,5 +334,17 @@ br {
 
 .bttext button {
   width: 100% !important;
+}
+
+.item-btn, .item-btn2{
+  flex-direction: column;
+}
+
+.item-btn2, .item-btn3 {
+  text-align: center;
+  align-items: center;
+}
+.item-btn3{
+  margin-top: 15px;
 }
 }
