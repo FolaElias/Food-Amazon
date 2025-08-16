@@ -7,24 +7,25 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="animations.css">
 </head>
 <body>
     <!-- login page starts -->
      <div class="row ">
         <!-- image on login page  -->
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 gx-0 position-relative">
-            <div class="">
+            <div class="" id="drop-out">
             <img src="../images/Left.png" alt="" class="logimg">
             </div>
-            <div class="position-absolute top-0 start-50 translate-middle-x mt-5">
-                <img src="../images/foodies.png" alt="" class="logo">
+            <div class="position-absolute top-0 start-50 translate-middle-x mt-5" id="drop-in">
+                <!-- <img src="../images/foodies.png" alt="" class="logo"> -->
             <img src="../images/Foodies logo.png" alt="">
             </div>
         </div>
 
         <!-- form section  -->
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 px-lg-5 mt-5 pt-lg-5">
-            <div >
+            <div id="drop-in">
                 <!-- login text  -->
                 <p class="fs-1 fw-bold login-text">Login</p>
                 <div class="mt-5">
@@ -51,7 +52,7 @@
                             <button class="forget-btn fs-5">Forgot Password?</button>
                         </div>
                      </div>
-                    <button type="submit" class="w-100 submit-btn mt-5 fs-5">Login</button>
+                    <button type="submit" class="w-100 submit-btn mt-5 fs-5" id="fancy">Login</button>
                 </form>
             </div>
         </div>
