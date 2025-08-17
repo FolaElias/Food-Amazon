@@ -14,7 +14,7 @@
   <!-- navigation bar starts here -->
 <nav class="navbar navbar-expand-lg  px-lg-5">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#"><img class="me-lg-5" src="../images/Foodies logo without Banner 1.png" alt=""></a>
+    <a class="navbar-brand" href="../landingpages/index.html"><img class="me-lg-5" src="../images/Foodies logo without Banner 1.png" alt=""></a>
     <a href="#" class="cart-nav">
           <i class="fa-solid fa-bag-shopping fa-2x" style="color: #0f0b0b;"></i>
           <span class="badge rounded-pill badge-notification bg-warning">2</span>
@@ -25,7 +25,7 @@
     <div class="collapse navbar-collapse " id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-lg-0 fs-5 fw-bold">
         <li class="nav-item">
-          <a class="nav-link active  ms-lg-5" aria-current="page" href="#">Home</a>
+          <a class="nav-link active  ms-lg-5" aria-current="page" href="../landingpages/index.html">Home</a>
         </li>
         <li class="nav-item">
           <a class="nav-link " href="#">Our Products</a>
@@ -42,14 +42,22 @@
       </ul>
       <form class="d-flex" role="search">
           <a class="nav-link" href="#"><i class="fa-solid fa-magnifying-glass fa-2x" style="color: #0f0b0b;"></i></a>
-         <a class="link-secondary" href="#">
-        <i class="fa-regular fa-heart fa-2x ms-5" style="color: #0f0b0b;"></i>
+         <a class="link-secondary ms-3" href="#">
+        <i class="fa-regular fa-heart fa-2x " style="color: #0f0b0b;"></i>
       </a>
-      <a href="#" class="ms-5">
+      <a href="../landingpages/cart.html" class="ms-3">
           <i class="fa-solid fa-bag-shopping fa-2x" style="color: #0f0b0b;"></i>
           <span class="badge rounded-pill badge-notification bg-warning">2</span>
         </a>
-        <button class="btn btn-lg btn-success ms-5" type="submit">Contact Us</button>
+        <a href="../login.html">
+          <div class="d-inline-flex position-relative ms-3">
+          <span class="position-absolute top-0 start-100 translate-middle p-1 bg-success border border-light rounded-circle">
+             <span class="visually-hidden">New alerts</span>
+          </span>
+          <i class="fa-regular fa-user fa-2x" style="color: #0f0b0b;"></i>
+        </div>
+        </a>
+        <button class="btn btn-lg btn-success ms-3" type="submit">Contact Us</button>
       </form>
     </div>
   </div>
@@ -60,7 +68,7 @@
 <!-- hero section starts -->
 <section class="hero-section mt-5">
   <div class="row px-lg-5">
-    <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 text-button ps-lg-5">
+    <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 text-button ps-lg-5" id="drop-in">
       <p class="fs-5" style="color: #0F0B0B;">Discover the Pure Taste of Nature</p>
       <h1 class="display-2 fw-bold">Organic <span>Snacks</span><br> Made <span>with</span> Love, <br>Just <span>for</span> You!</h1>
       <button class="fs-5 text-light px-4 py-3 mt-4">Shop Now <i class="fa-solid fa-shop" style="color: #ffff;"></i></button>
@@ -68,8 +76,8 @@
       <img src="../images/dots.png" alt="">
       </div>
     </div>
-    <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 text-center image-her">
-      <img src="../images/hero.png"  alt="">
+    <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 text-center image-her " id="drop-out">
+      <img src="../images/hero.png" alt="">
       <div class="hero-stars">
         <img src="../images/hero starts.png" alt="">
       </div>
@@ -98,7 +106,7 @@
     <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4">
       <!-- card image  -->
       <div class="organic-card">
-        <img src="../images/organic almond delight.png" alt="">
+        <img src="../images/organic almond delight.png" id="imageReveal" alt="">
       </div>
       <!-- like and text  -->
           <!-- text  -->
@@ -121,7 +129,7 @@
     <!-- secomd card -->
     <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4">
       <div class="organic-card">
-        <img src="../images/Berry bliss bites.png" alt="">
+        <img src="../images/Berry bliss bites.png" id="imageReveal" alt="">
       </div>
       <!-- like and text  -->
           <!-- text  -->
@@ -143,8 +151,9 @@
 
     <!-- third card  -->
     <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4">
-      <div class="organic-card">
-        <img src="../images/coconut crunchies.png" alt="">
+      <div class="cardAnimate">
+        <div class="organic-card">
+        <img src="../images/coconut crunchies.png" id="imageReveal" alt="">
       </div>
       <!-- like and text  -->
           <!-- text  -->
@@ -162,6 +171,7 @@
          </div>
       <!-- add to cart button  -->
        <button type="button" class="btn btn-outline-success w-100 py-4 fs-5">Add To Cart</button> 
+      </div>
     </div>
    </div>
 </section>
@@ -575,11 +585,10 @@
 </footer>
 <!-- Footer -->
 
-
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
      <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/js/all.min.js" integrity="sha512-b+nQTCdtTBIRIbraqNEwsjB6UvL3UEMkXnhzd8awtCYh0Kcsjl9uEgwVFVbhoj3uu1DO1ZMacNvLoyJJiNfcvg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/9.1.0/mdb.umd.min.js"></script>
+   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/9.1.0/mdb.umd.min.js"></script>
+   <script src="../index.js"></script>
   </body>
 </body>
 </html>
