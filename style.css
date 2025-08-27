@@ -356,6 +356,10 @@ footer {
   padding-bottom: 50px;
   margin-bottom: 50px;
  }
+
+ #hide {
+  display: none;
+ }
 }
 
 
