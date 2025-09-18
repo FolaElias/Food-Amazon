@@ -338,6 +338,21 @@ footer {
     place-content: center;
   }
 
+  .spin {
+    display: none;
+  }
+
+  .product-img {
+    height: 300px;
+    border-radius: 10px;
+    object-fit: cover;
+  }
+
+  .card-title {
+     font-family: "Roboto", sans-serif;
+     color: #0F0B0B;
+  }
+
 @media (max-width: 991.98px) {
   .benefit {
     height: auto;
