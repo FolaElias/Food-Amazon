@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" href="../animations.css">
 </head>
-<body>
+<body onload="fiveProdct()">
       <!-- navigation bar starts here -->
 <nav class="navbar navbar-expand-lg  px-lg-5">
   <div class="container-fluid">
@@ -69,34 +69,38 @@
     <div class="row px-lg-5 mt-5">
         <!-- image column -->
         <div class="col-sm-12 col-md-12 col-lg-12 col-xl-6">
-            <div class="text-center">
-                <img src="../images/coconut.png" class="w-75" id="imageReveal" alt="">
-            </div>
-            <div class="text-center mt-5">
-            <img src="../images/Frame 17990.png" class="w-50" id="imageReveal" alt="">
-            </div>
+                     <div class="product-gallery">
+                <!-- Main Image -->
+                <div id="mainImageWrapper product-image">
+                  <img id="mainImage" class="product-main-image" src="" alt="Product">
+                </div>
+
+                <!-- Carousel with buttons -->
+                <div class="carousel-wrapper">
+                  <button id="prevBtn" class="carousel-btn">‹</button>
+                  <div id="imageCarousel" class="carousel-thumbnails"></div>
+                  <button id="nextBtn" class="carousel-btn">›</button>
+                </div>
+              </div>
+            
             <p class="about fs-4 fw-bold" style="color: #0F0B0B;">About This Product</p>
-            <p class="fs-5 mt-4">Indulge in the natural crunch and flavor of our Crunchy Nut Mix, a blend of premium nuts roasted to perfection. This mix includes almonds, cashews, and walnuts, providing a delicious and nutritious snack that is rich in protein and healthy fats.</p>
-            <ul class="fs-5 mt-4">
-              <li>Blend of organic almonds, cashews, and walnuts</li>
-              <li>Lightly roasted to enhance natural flavors</li>
-              <li>No added oils or preservatives</li>
+            <p class="fs-5 mt-4" id= "productDescription"></p>
+            <p class="fw-bold fs-4">Ingredients</p>
+            <ul class="fs-5 mt-4" id="productIngredients">
             </ul>
-            <p class="fs-5"><b class="text-dark">Benefits:</b> Excellent source of protein and healthy fats. Supports heart health and brain function. Satisfies hunger and boosts energy.</p>
+            <p class="fs-5"><b class="text-dark">Benefits:</b> <span id="productBenefits"></span></p>
         </div>
         <!-- prie and description column -->
         <div class="col-sm-12 col-md-12 col-lg-12 col-xl-6">
             <p>Coconut Flakes</p>
-            <p class="offer fs-3 fw-bold">Coconut Crunchies</p>
-            <s class="fs-5">$120</s> <span class="fs-4 fw-bolder ms-2" style="color: #F86624;">$60</span>
+            <p class="offer fs-3 fw-bold" id="productName"></p>
+             <span class="fs-4 fw-bolder ms-2" id="productPrice" style="color: #F86624;"></span>
             <p class="fs-5 mt-4"><i class="fa-solid fa-star  me-3" style="color: #f58634;"></i>5.0 (37)</p>
             <!-- varieties  -->
              <div class="d-flex">
                 <p class="fs-4 text-dark fw-bold pe-4">Variety:</p>
-                <ul class="fs-5 ">
-                    <li>Classic Nut Mix</li>
-                    <li>Spicy Nut Mix</li>
-                    <li>Sweet & Salty Nut Mix</li>
+                <ul class="fs-5 " id="productVariety">
+                  
                 </ul>
              </div>
              <!-- increament and decreament buttons -->
@@ -265,91 +269,30 @@
   </div>
 </section>
 </section>
+
+<section></section>
+
+
 <section class="px-lg-5 px-3 mt-5">
     <p class="fw-bold display-2 text-dark about">Similar Products</p>
     <div class="d-flex justify-content-between bttext">
       <p class="fs-5">Browse our most popular snacks and make your day more beautiful and glorious.</p>
       <button class="done-btn fs-5 fadeUp" id="fancy">Browse All</button>
     </div>
-    <div class="row g-0 gx-lg-5 gx-xl-5 gy-5">
-    <!-- first card -->
-    <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4">
-      <div class="cardAnimate">
-          <!-- card image  -->
-      <div class="organic-card">
-        <img src="../images/organic almond delight.png" id="imageReveal" alt="">
-      </div>
-      <!-- like and text  -->
-          <!-- text  -->
-       <div class="d-flex justify-content-between mt-3">
-        <p class="">Coconut Flakes</p>
-        <div>
-          <a href="#"><i class="fa-regular fa-heart fa-2x" style="color: #0f0b0b;"></i></a>
-        </div>
-       </div>
-       <p class="organic-text fs-4 fw-bold">Organic Almond Delight</p>
-       <!-- rating and price  -->
-         <div class="d-flex justify-content-between">
-          <p class="fs-5"><i class="fa-solid fa-star me-2" style="color: #f58634;"></i>5.0 (18)</p>
-          <p class="fs-5">$110</p>
-         </div>
-      <!-- add to cart button  -->
-       <button type="button" class="btn btn-outline-success w-100 py-4 fs-5">Add To Cart</button> 
-      </div>
-    </div>
-
-    <!-- secomd card -->
-    <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4">
-      <div class="cardAnimate">
-        <div class="organic-card">
-        <img src="../images/Berry bliss bites.png" id="imageReveal" alt="">
-      </div>
-      <!-- like and text  -->
-          <!-- text  -->
-           <div class="d-flex justify-content-between mt-3">
-        <p class="">Coconut Flakes</p>
-        <div>
-          <a href="#"><i class="fa-regular fa-heart fa-2x" style="color: #0f0b0b;"></i></a>
-        </div>
-       </div>
-       <p class="organic-text fs-4 fw-bold">Organic Almond Delight</p>
-       <!-- rating and price  -->
-         <div class="d-flex justify-content-between">
-          <p class="fs-5"><i class="fa-solid fa-star me-2" style="color: #f58634;"></i>5.0 (18)</p>
-          <p class="fs-5">$110</p>
-         </div>
-      <!-- add to cart button  -->
-       <button type="button" class="btn btn-outline-success w-100 py-4 fs-5">Add To Cart</button> 
-      </div>
-    </div>
-
-    <!-- third card  -->
-    <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4">
-      <div class="cardAnimate">
-        <div class="organic-card">
-        <img src="../images/coconut crunchies.png" id="imageReveal" alt="">
-      </div>
-      <!-- like and text  -->
-          <!-- text  -->
-       <div class="d-flex justify-content-between mt-3">
-        <p class="">Coconut Flakes</p>
-        <div>
-          <a href="#"><i class="fa-regular fa-heart fa-2x" style="color: #0f0b0b;"></i></a>
-        </div>
-       </div>
-       <p class="organic-text fs-4 fw-bold">Organic Almond Delight</p>
-       <!-- rating and price  -->
-         <div class="d-flex justify-content-between">
-          <p class="fs-5"><i class="fa-solid fa-star me-2" style="color: #f58634;"></i>5.0 (18)</p>
-          <p class="fs-5">$110</p>
-         </div>
-      <!-- add to cart button  -->
-       <button type="button" class="btn btn-outline-success w-100 py-4 fs-5">Add To Cart</button>
-      </div> 
-    </div>
-   </div>
+     <div class="bbb px-lg-5 mt-5">
+  <div class="carousel3 ">
+    
+  </div>
+</div>
   </section>
 
+
+
+
+<!-- <h2 id="productName"></h2>
+<p id="productPrice"></p>
+<p id="productDescription"></p>
+<div id="productImages"></div> -->
 
   <!-- Footer -->
 <footer class="text-center text-lg-start text-muted mt-5">
@@ -455,9 +398,13 @@
 </footer>
 <!-- Footer -->
 
+
+
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
      <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/js/all.min.js" integrity="sha512-b+nQTCdtTBIRIbraqNEwsjB6UvL3UEMkXnhzd8awtCYh0Kcsjl9uEgwVFVbhoj3uu1DO1ZMacNvLoyJJiNfcvg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/9.1.0/mdb.umd.min.js"></script>
+     <script src="../index.js"></script>
+
 </body>
 </html>
