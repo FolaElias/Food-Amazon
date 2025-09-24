@@ -111,7 +111,11 @@
               <button class="increase2 px-3"><i class="fa-solid fa-plus fa-2x " style="color: #000000;"></i></button>
              </div>
              <p class="fs-5 mt-4">Our Date-Coconut Delight combines the rich sweetness of organic date syrup with the tropical flavor of coconut flakes, creating a snack that’s both indulgent and healthy.</p>
-             <button class="add-cart w-100 fs-5 mt-5" id="fancy">Add to Cart</button>
+             <button class="add-cart w-100 fs-5 mt-5" id="fancy"
+             data-product-id="${productId}"
+            data-product-name="${escapeHtml(product.name)}"
+            data-product-price="${product.price}"
+            data-product-image="${Array.isArray(product.image) ? product.image[0] : (product.image || '')}">Add to Cart</button>
              <button class="pay-btn w-100 fs-5 mt-4" id="fancy-2">Check Out</button>
         </div>
     </div>
@@ -280,10 +284,10 @@
       <button class="done-btn fs-5 fadeUp" id="fancy">Browse All</button>
     </div>
      <div class="bbb px-lg-5 mt-5">
-  <div class="carousel3 ">
+        <div class="carousel3" id="backFive">
     
-  </div>
-</div>
+        </div>
+    </div>
   </section>
 
 
@@ -404,7 +408,10 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
      <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/js/all.min.js" integrity="sha512-b+nQTCdtTBIRIbraqNEwsjB6UvL3UEMkXnhzd8awtCYh0Kcsjl9uEgwVFVbhoj3uu1DO1ZMacNvLoyJJiNfcvg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/9.1.0/mdb.umd.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
      <script src="../index.js"></script>
+     <script src="../cart.js"></script>
 
 </body>
 </html>

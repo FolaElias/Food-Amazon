@@ -64,7 +64,7 @@ function signUp(event) {
                     })
 
                     setTimeout(() => {
-                        location.href = '../login.html'
+                        location.href = './login.html'
                     }, 3000)
                 }
 
@@ -91,99 +91,280 @@ function signUp(event) {
 }
 
 // login api
-function logIn(event) {
-    event.preventDefault();
-    const spin = document.querySelector('.spin');
-    const fancy = document.getElementById('fancy');
-    spin.style.display = 'inline-block';
-    fancy.style.pointerEvents = 'none';
+// function logIn(event) {
+//     event.preventDefault();
+//     const spin = document.querySelector('.spin');
+//     const fancy = document.getElementById('fancy');
+//     spin.style.display = 'inline-block';
+//     fancy.style.pointerEvents = 'none';
 
-    getEmail = document.getElementById('email').value;
-    getPassword = document.getElementById('password').value;
+//     getEmail = document.getElementById('email').value;
+//     getPassword = document.getElementById('password').value;
 
-    if (getEmail === "" || getPassword === "") {
-        Swal.fire({
-            icon: 'info',
-            title: 'All fields are required',
-            confirmButtonColor: '#F58634'
-        })
-        spin.style.display = 'none';
-        fancy.style.pointerEvents = 'auto';
-    }
+//     if (getEmail === "" || getPassword === "") {
+//         Swal.fire({
+//             icon: 'info',
+//             title: 'All fields are required',
+//             confirmButtonColor: '#F58634'
+//         })
+//         spin.style.display = 'none';
+//         fancy.style.pointerEvents = 'auto';
+//     }
 
-    else {
-         const signData = {
-            email: getEmail,
-            password: getPassword
-        };
+//     else {
+//          const signData = {
+//             email: getEmail,
+//             password: getPassword
+//         };
 
-        const signMethod = {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(signData)
-        };
+//         const signMethod = {
+//             method: 'POST',
+//             headers: {
+//                 'Content-Type': 'application/json'
+//             },
+//             body: JSON.stringify(signData)
+//         };
 
-        const url = 'http://localhost:3001/amazon/document/api/login';
+//         const url = 'http://localhost:3001/amazon/document/api/login';
 
-        fetch(url, signMethod) 
-            .then(response => response.json())
-            .then(result => {
-                console.log(result) 
-                  if (result.hasOwnProperty("email")) {
-                localStorage.setItem("key", result.token)
-                location.href = "./index.html"
-            }
-            else {
-                Swal.fire({
-                    icon: 'info',
-                    text: `${result.message}`,
-                    confirmButtonColor: "#2D85DE"
-                })
-                spinItem.style.display = "none";
-            }
-            })
-            .catch(error => {
-                console.log('error', error) 
-                Swal.fire({
-                icon: 'info',
-                text: `${result.message}`,
-                confirmButtonColor: "#2D85DE"
-            })
-            });
-            // .then(res => res.json())
-            // .then(token => {
-            //     console.log("JWT Token:", token);
-            //       setTimeout(() => {
-            //             location.href = './index.html'
-            //         }, 3000)
-            // })
-            //  .catch(err => console.error("Error:", err));
+//         fetch(url, signMethod)
+//             .then(response => response.json())
+//             .then(result => {
+//                 console.log(result)
+//                   if (result.hasOwnProperty("email")) {
+//                 localStorage.setItem("key", result.token)
+//                 location.href = "./index.html"
+//             }
+//             else {
+//                 Swal.fire({
+//                     icon: 'info',
+//                     text: `${result.message}`,
+//                     confirmButtonColor: "#2D85DE"
+//                 })
+//                 spinItem.style.display = "none";
+//             }
+//             })
+//             .catch(error => {
+//                 console.log('error', error)
+//                 Swal.fire({
+//                 icon: 'info',
+//                 text: `${result.message}`,
+//                 confirmButtonColor: "#2D85DE"
+//             })
+//             });
+//             // .then(res => res.json())
+//             // .then(token => {
+//             //     console.log("JWT Token:", token);
+//             //       setTimeout(() => {
+//             //             location.href = './index.html'
+//             //         }, 3000)
+//             // })
+//             //  .catch(err => console.error("Error:", err));
                     
-    }
+//     }
+// }
+// ✅ LOGIN FUNCTION
+function logIn(event) {
+  event.preventDefault();
+  const spin = document.querySelector('.spin');
+  const fancy = document.getElementById('fancy');
+  spin.style.display = 'inline-block';
+  fancy.style.pointerEvents = 'none';
+
+  const getEmail = document.getElementById('email').value;
+  const getPassword = document.getElementById('password').value;
+
+  if (getEmail === "" || getPassword === "") {
+    Swal.fire({
+      icon: 'info',
+      title: 'All fields are required',
+      confirmButtonColor: '#F58634'
+    });
+    spin.style.display = 'none';
+    fancy.style.pointerEvents = 'auto';
+    return;
+  }
+
+  const signData = { email: getEmail, password: getPassword };
+
+  fetch('http://localhost:3001/amazon/document/api/login', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(signData)
+  })
+    .then(response => response.json())
+    .then(result => {
+      console.log("Login result:", result);
+
+      if (result.token) {
+        // ✅ Store login token
+        localStorage.setItem("authToken", result.token);
+        localStorage.setItem("userEmail", result.email || getEmail);
+
+        Swal.fire({
+          icon: 'success',
+          title: 'Login successful',
+          confirmButtonColor: '#28a745'
+        }).then(() => {
+          location.href = "../index.html"; // redirect after login
+        });
+
+      } else {
+        Swal.fire({
+          icon: 'error',
+          text: result.message || "Login failed",
+          confirmButtonColor: "#2D85DE"
+        });
+      }
+
+      spin.style.display = 'none';
+      fancy.style.pointerEvents = 'auto';
+    })
+    .catch(error => {
+      console.error('Login error:', error);
+      Swal.fire({
+        icon: 'error',
+        text: "Something went wrong, please try again",
+        confirmButtonColor: "#2D85DE"
+      });
+      spin.style.display = 'none';
+      fancy.style.pointerEvents = 'auto';
+    });
 }
 
+// ✅ LOGOUT FUNCTIONS
+function logOut() {
+  // SweetAlert2 check
+  if (typeof Swal !== "undefined") {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You will be logged out.",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#3085d6",
+      confirmButtonText: "Yes, log out"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        performLogout();
+      }
+    });
+  } else {
+    if (confirm("Log out?")) {
+      performLogout();
+    }
+  }
+}
+
+function performLogout() {
+  // clear session
+  localStorage.removeItem("authToken");
+  localStorage.removeItem("userEmail");
+  localStorage.removeItem("site_cart_v1");
+
+  // optional: clear cart too
+  // localStorage.removeItem("site_cart_v1");
+
+  // update UI immediately
+  const userStatusDot = document.getElementById("userStatusDot");
+  if (userStatusDot) userStatusDot.style.display = "none";
+
+  const userLink = document.getElementById("userLink");
+  if (userLink) {
+    userLink.setAttribute("href", "../login.html");
+    userLink.onclick = null;
+  }
+
+  // redirect
+  setTimeout(() => {
+    location.href = "./login.html";
+  }, 200);
+}
+
+// ✅ CHECK LOGIN STATE ON EVERY PAGE
+document.addEventListener("DOMContentLoaded", () => {
+  const token = localStorage.getItem("authToken");
+  const userLink = document.getElementById("userLink");
+  const userStatusDot = document.getElementById("userStatusDot");
+
+  if (token) {
+    // User logged in
+    if (userStatusDot) userStatusDot.style.display = "inline-block";
+
+    if (userLink) {
+      userLink.removeAttribute("href");
+      userLink.addEventListener("click", (e) => {
+        e.preventDefault();
+        logOut();
+      });
+    }
+  } else {
+    // Not logged in
+    if (userStatusDot) userStatusDot.style.display = "none";
+
+    if (userLink) {
+      userLink.setAttribute("href", "./login.html");
+      userLink.onclick = null;
+    }
+  }
+});
 
 
 
-  // Fetch and display products
-//   async function showProducts() {
-//     try {
-//       const response = await fetch('http://localhost:3001/amazon/document/api/products');
-//       const products = await response.json();
-//       const productsRow = document.getElementById('productsRow');
-//       productsRow.innerHTML = ''; // Clear before adding
-//       products.forEach(product => {
-//         const col = document.createElement('div');
-//         col.className = 'col-md-6 col-lg-3 mb-4';
-//         col.innerHTML = `
-//           <div class="card h-100 shadow-sm">
-//             <img src="${Array.isArray(product.image) ? product.image[0] : product.image}"
+
+
+
+
+
+
+
+
+
+
+document.addEventListener('DOMContentLoaded', function() {
+  showProducts();
+  fiveProducts();
+  backFiveProducts();
+  
+})
+
+document.addEventListener("DOMContentLoaded", () => {
+  const params = new URLSearchParams(window.location.search);
+  const id = params.get("id");
+  if (id) {
+    productDetails(id); // Load single product
+  } else {
+    showProducts(); // Load all products
+    fiveProducts();
+    backFiveProducts()
+    }
+    
+});
+// ----------------------
+// Show all products
+// ----------------------
+// async function showProducts() {
+//   try {
+//     const response = await fetch("http://localhost:3001/amazon/document/api/products");
+//     if (!response.ok) throw new Error("Failed to fetch products");
+//     const products = await response.json();
+//     console.log("Products:", products);
+//     const productsRow = document.getElementById("productsRow");
+//     if (!productsRow) return;
+//     productsRow.innerHTML = "";
+//     products.forEach(product => {
+//       // Prefer MongoDB _id, fallback to id
+//       const productId = product._id || product.id;
+//       const col = document.createElement("div");
+//       col.className = "col-md-6 col-lg-3 mb-4";
+//       col.innerHTML = `
+//         <div class="card h-100 shadow-sm">
+//           <img src="${Array.isArray(product.image) ? product.image[0] : product.image}"
 //                alt="${product.name}"
 //                class="card-img-top product-img"
-//                onclick="productDetails(${product.Id})">
-//             <div class="card-body">
+//                id= "imageReveal"
+//                onclick="goToProductDetails('${productId}')">
+//          <div class="card-body">
 //                 <h5 class=""></h5>
 //                     <div class="d-flex justify-content-between mt-3"><p class="">Coconut Flakes</p>
 //                     <div>
@@ -193,42 +374,15 @@ function logIn(event) {
 //                 <p class = "card-title fs-5 fw-bold">${product.name}</p>
 //               <div class="d-flex justify-content-between">
 //                 <p class="fs-5"><i class="fa-solid fa-star me-2" style="color: #f58634;"></i>5.0 (18)</p>
-//                 <p class="fs-5">₦${product.price}</p>
-//                 </div>
-//                 <button type="button" class="btn btn-outline-success w-100 py-3 fs-5">Add To Cart</button>
-//                 </div>
-//           </div>
-//         `;
-//         productsRow.appendChild(col);
-//       });
-//     } catch (error) {
-//       console.error('Error fetching products:', error);
-//       }
-      
-// };
-
-// async function showProducts() {
-//   try {
-//     const response = await fetch("http://localhost:3001/amazon/document/api/products");
-//     if (!response.ok) throw new Error("Failed to fetch products");
-//     const products = await response.json();
-//     console.log("Products:", products); // Debugging
-//     const productsRow = document.getElementById("productsRow");
-//     productsRow.innerHTML = ""; // Clear before adding
-//     products.forEach(product => {
-//       const col = document.createElement("div");
-//       col.className = "col-md-6 col-lg-3 mb-4";
-//       col.innerHTML = `
-//         <div class="card h-100 shadow-sm">
-//           <img src="${Array.isArray(product.image) ? product.image[0] : product.image}"
-//                alt="${product.name}"
-//                class="card-img-top product-img"
-//                onclick="productDetails(${product.id})">
-//           <div class="card-body">
-//             <h5 class="card-title fs-5 fw-bold">${product.name}</h5>
-//             <p class="card-text">${product.description || "No description available"}</p>
-//             <p class="text-primary fw-bold">$${product.price ?? "0.00"}</p>
-//           </div>
+//               <p class="fs-5">₦${product.price}</p>
+//             </div>
+//             <button type="button" class="btn btn-outline-success w-100 py-3 fs-5"  id="cartBtn-${productId}"
+//   onclick="toggleCart({
+//     id: '${productId}', 
+//     name: '${product.name}', 
+//     price: ${product.price}, 
+//     image: '${Array.isArray(product.image) ? product.image[0] : product.image}'
+//   })">Add To Cart</button>
 //         </div>
 //       `;
 //       productsRow.appendChild(col);
@@ -237,176 +391,6 @@ function logIn(event) {
 //     console.error("Error loading products:", error);
 //   }
 // }
-
-async function fiveProducts() {
-    try {
-        const response = await fetch('http://localhost:3001/amazon/document/api/fiveproducts');
-        const products = await response.json();
-        const carousel = document.querySelector('.carousel');
-        const carousel2 = document.querySelector('.carousel2');
-    
-        products.forEach(fiveProducts => {
-            const card = document.createElement('div');
-            card.className = 'cards';
-            card.innerHTML = `
-           <div class = "prodimg">
-                      <img src= "${fiveProducts.image}" alt="" />
-                      </div>
-                       <div class="card-body">
-                <h5 class=""></h5>
-                    <div class="d-flex justify-content-between mt-3"><p class="">Coconut Flakes</p>
-                    <div>
-                    <a href="#"><i class="fa-regular fa-heart fa-2x" style="color: #0f0b0b;"></i></a>
-                    </div>
-                </div>
-                <p class = "card-title fs-5 fw-bold">${fiveProducts.name}</p>
-                      <div class="d-flex justify-content-between mt-3">
-                <p class="fs-5"><i class="fa-solid fa-star me-2" style="color: #f58634;"></i>5.0 (18)</p>
-                <p class="fs-5">₦${fiveProducts.price}</p>
-                </div>
-                <button type="button" class="btn btn-outline-success w-100 py-3 fs-5">Add To Cart</button>
-                      </div>
-            `;
-            carousel.appendChild(card);
-            carousel2.appendChild(card.cloneNode(true)); 
-        });
-    } catch (error) {
-        console.error('Error fetching five products:', error);
-    }
-}
-
-// async function productDetails(id) {
-//   try {
-//     const res = await fetch(`http://localhost:3001/amazon/document/api/products/${id}`);
-//     if (!res.ok) throw new Error("Product not found");
-//     const product = await res.json();
-//     console.log("Product:", product); // Debugging
-//     document.getElementById("productName").textContent = product.name || "Unnamed Product";
-//     document.getElementById("productPrice").textContent = product.price ? `$${product.price}` : "No price";
-//     document.getElementById("productDescription").textContent = product.description || "No description";
-//     const imagesDiv = document.getElementById("productImages");
-//     imagesDiv.innerHTML = "";
-//     (Array.isArray(product.image) ? product.image : [product.image]).forEach((src, i) => {
-//       if (!src) return; // Skip if no image
-//       const img = document.createElement("img");
-//       img.src = src;
-//       img.alt = `${product.name} ${i + 1}`;
-//       img.loading = "lazy";
-//       img.style.maxWidth = "200px";
-//       img.style.marginRight = "8px";
-//       imagesDiv.appendChild(img);
-//     });
-//   } catch (error) {
-//     document.body.innerHTML = "<h2>Product not found</h2>";
-//     console.error("Error loading product:", error);
-//   }
-// }
-
-// function goToProductDetails(id) {
-//   location.href = `product-details.html?id=${id}`;
-// }
-
-
-
-async function fiveProduct() {
-    try {
-        const response = await fetch('http://localhost:3001/amazon/document/api/fiveproducts');
-        const products = await response.json();
-        const carouse = document.querySelector('.carousel3');
-    
-        products.forEach(fiveProducts => {
-            const card = document.createElement('div');
-            card.className = 'cards';
-            card.innerHTML = `
-           <div class= "cardAnimate">
-           <div class = "prodimg">
-                      <img src= "${fiveProducts.image}" alt="" id="imageReveal" />
-                      </div>
-                       <div class="card-body">
-                <h5 class=""></h5>
-                    <div class="d-flex justify-content-between mt-3"><p class="">Coconut Flakes</p>
-                    <div>
-                    <a href="#"><i class="fa-regular fa-heart fa-2x" style="color: #0f0b0b;"></i></a>
-                    </div>
-                </div>
-                <p class = "card-title fs-5 fw-bold">${fiveProducts.name}</p>
-                      <div class="d-flex justify-content-between mt-3">
-                <p class="fs-5"><i class="fa-solid fa-star me-2" style="color: #f58634;"></i>5.0 (18)</p>
-                <p class="fs-5">₦${fiveProducts.price}</p>
-                </div>
-                <button type="button" class="btn btn-outline-success w-100 py-3 fs-5">Add To Cart</button>
-                </div>
-                <div class= "mb-5"></div>
-           </div>
-            `;
-            carouse.appendChild(card);
-        });
-    } catch (error) {
-        console.error('Error fetching five products:', error);
-    }
-}
-
-document.addEventListener('DOMContentLoaded', function() {
-    showProducts();
-    fiveProducts();
-    fiveProduct(); 
-})
-
-document.addEventListener("DOMContentLoaded", () => {
-  const params = new URLSearchParams(window.location.search);
-  const id = params.get("id");
-  if (id) {
-    productDetails(id); // Load single product
-  } else {
-      showProducts(); // Load all products
-    }
-    
-});
-// ----------------------
-// Show all products
-// ----------------------
-async function showProducts() {
-  try {
-    const response = await fetch("http://localhost:3001/amazon/document/api/products");
-    if (!response.ok) throw new Error("Failed to fetch products");
-    const products = await response.json();
-    console.log("Products:", products);
-    const productsRow = document.getElementById("productsRow");
-    if (!productsRow) return;
-    productsRow.innerHTML = "";
-    products.forEach(product => {
-      // Prefer MongoDB _id, fallback to id
-      const productId = product._id || product.id;
-      const col = document.createElement("div");
-      col.className = "col-md-6 col-lg-3 mb-4";
-      col.innerHTML = `
-        <div class="card h-100 shadow-sm">
-          <img src="${Array.isArray(product.image) ? product.image[0] : product.image}"
-               alt="${product.name}"
-               class="card-img-top product-img"
-               id= "imageReveal"
-               onclick="goToProductDetails('${productId}')">
-         <div class="card-body">
-                <h5 class=""></h5>
-                    <div class="d-flex justify-content-between mt-3"><p class="">Coconut Flakes</p>
-                    <div>
-                    <a href="#"><i class="fa-regular fa-heart fa-2x" style="color: #0f0b0b;"></i></a>
-                    </div>
-                </div>
-                <p class = "card-title fs-5 fw-bold">${product.name}</p>
-              <div class="d-flex justify-content-between">
-                <p class="fs-5"><i class="fa-solid fa-star me-2" style="color: #f58634;"></i>5.0 (18)</p>
-              <p class="fs-5">₦${product.price}</p>
-            </div>
-            <button type="button" class="btn btn-outline-success w-100 py-3 fs-5">Add To Cart</button>
-        </div>
-      `;
-      productsRow.appendChild(col);
-    });
-  } catch (error) {
-    console.error("Error loading products:", error);
-  }
-}
 // ----------------------
 // Show product details
 // ----------------------
@@ -524,5 +508,618 @@ async function productDetails(id) {
 // Redirect helper
 // ----------------------
 function goToProductDetails(id) {
-  location.href = `product-details.html?id=${id}`;
+  // First try landingpages/
+  const testPath = "/landingpages/product-details.html";
+  fetch(testPath, { method: "HEAD" })
+    .then(res => {
+      if (res.ok) {
+        location.href = `${testPath}?id=${id}`;
+      } else {
+        location.href = `/product-details.html?id=${id}`;
+      }
+    })
+    .catch(() => {
+      location.href = `/product-details.html?id=${id}`;
+    });
 }
+
+
+
+
+// async function fiveProducts() {
+//   try {
+//     const response = await fetch("http://localhost:3001/amazon/document/api/products");
+//     if (!response.ok) throw new Error("Failed to fetch products");
+    
+//     const products = await response.json();
+//     console.log("Products:", products);
+
+//     const carousels = ["carousel1", "carousel2"]; // both IDs
+//     const toShow = Array.isArray(products) ? products.slice(0, 5) : [];
+
+//     carousels.forEach(id => {
+//       const productsRow = document.getElementById(id);
+//       if (!productsRow) return;
+
+//       productsRow.innerHTML = "";
+//       toShow.forEach(product => {
+//         const productId = product._id || product.id;
+//         const imageSrc = Array.isArray(product.image) ? product.image[0] : product.image;
+
+//         const col = document.createElement("div");
+//         col.className = "col-12 col-md-6 col-lg-3 mb-4";
+//         col.innerHTML = `
+//           <div class="card h-100 shadow-sm">
+//             <img src="${imageSrc}" alt="${product.name}"
+//                  class="card-img-top product-img px-lg-0 px-2"
+//                  id="imageReveal"
+//                  onclick="goToProductDetails('${productId}')">
+//             <div class="card-body">
+//               <div class="d-flex justify-content-between mt-3">
+//                 <p>${product.name}</p>
+//                 <div>
+//                   <a href="#"><i class="fa-regular fa-heart fa-2x" style="color: #0F0B0B;"></i></a>
+//                 </div>
+//               </div>
+//               <p class="card-title fs-5 fw-bold">${product.name}</p>
+//               <div class="d-flex justify-content-between">
+//                 <p class="fs-5"><i class="fa-solid fa-star me-2" style="color: #F58634;"></i>5.0 (18)</p>
+//                 <p class="fs-5">₦${product.price}</p>
+//               </div>
+//               <button type="button" class="btn btn-outline-success w-100 py-3 fs-5">Add To Cart</button>
+//             </div>
+//           </div>
+//         `;
+//         productsRow.appendChild(col);
+//       });
+//     });
+//   } catch (error) {
+//     console.error("Error loading products:", error);
+//   }
+// }
+
+async function fiveProducts() {
+  try {
+    const response = await fetch("http://localhost:3001/amazon/document/api/products");
+    if (!response.ok) throw new Error("Failed to fetch products");
+
+    const products = await response.json();
+    console.log("Products:", products);
+
+    const carousels = ["carousel1", "carousel2"];
+    const toShow = Array.isArray(products) ? products.slice(0, 5) : [];
+
+    carousels.forEach(id => {
+      const productsRow = document.getElementById(id);
+      if (!productsRow) return;
+
+      productsRow.innerHTML = "";
+      toShow.forEach(product => {
+        const productId = String(product._id || product.id || product.name.replace(/\s+/g, "-"));
+        const imageSrc = Array.isArray(product.image) ? product.image[0] : product.image;
+
+        const col = document.createElement("div");
+        col.className = "col-12 col-md-6 col-lg-3 mb-4";
+        col.innerHTML = `
+          <div class="card h-100 shadow-sm">
+            <img src="${imageSrc}" alt="${product.name}"
+                 class="card-img-top product-img product-link px-lg-0 px-2"
+                 data-product-id="${productId}"
+                 onclick="goToProductDetails('${productId}'">
+
+            <div class="card-body">
+              <div class="d-flex justify-content-between mt-3">
+                <p>${product.name}</p>
+                <div>
+                  <a href="#"><i class="fa-regular fa-heart fa-2x" style="color: #0F0B0B;"></i></a>
+                </div>
+              </div>
+
+              <p class="card-title fs-5 fw-bold">${product.name}</p>
+
+              <div class="d-flex justify-content-between">
+                <p class="fs-5"><i class="fa-solid fa-star me-2" style="color: #F58634;"></i>5.0 (18)</p>
+                <p class="fs-5">₦${Number(product.price).toLocaleString()}</p>
+              </div>
+
+              <button type="button"
+                class="cart-btn btn btn-outline-success w-100 py-3 fs-5"
+                data-product-id="${productId}"
+                data-product-name="${product.name}"
+                data-product-price="${product.price}"
+                data-product-image="${imageSrc}">
+                Add To Cart
+              </button>
+            </div>
+          </div>
+        `;
+        productsRow.appendChild(col);
+      });
+
+      // ✅ Immediately update cart buttons to reflect cart state
+      syncCartButtons();
+    });
+  } catch (error) {
+    console.error("Error loading products:", error);
+  }
+}
+
+
+
+
+// async function backFiveProducts() {
+//   try {
+//     const response = await fetch("http://localhost:3001/amazon/document/api/products");
+//     if (!response.ok) throw new Error("Failed to fetch products");
+
+//     const products = await response.json();
+//     console.log("Products:", products);
+
+//     const carousels = ["backFive"];
+//     const toShow = Array.isArray(products) ? products.slice(-5) : [];
+
+//     carousels.forEach(id => {
+//       const productsRow = document.getElementById(id);
+//       if (!productsRow) return;
+
+//       productsRow.innerHTML = "";
+//       toShow.forEach(product => {
+//         const productId = product._id || product.id;
+//         const imageSrc = Array.isArray(product.image) ? product.image[0] : product.image;
+
+//         const col = document.createElement("div");
+//         col.className = "col-12 col-md-6 col-lg-3 mb-4";
+//         col.innerHTML = `
+//           <div class="card h-100 shadow-sm">
+//             <img src="${imageSrc}" alt="${product.name}"
+//                  class="card-img-top product-img productImage px-lg-0 px-2"
+//                  onclick="goToProductDetails('${productId}')">
+//             <div class="card-body">
+//               <div class="d-flex justify-content-between mt-3">
+//                 <p>${product.name}</p>
+//                 <div>
+//                   <a href="#"><i class="fa-regular fa-heart fa-2x" style="color: #0F0B0B;"></i></a>
+//                 </div>
+//               </div>
+//               <p class="card-title fs-5 fw-bold">${product.name}</p>
+//               <div class="d-flex justify-content-between">
+//                 <p class="fs-5"><i class="fa-solid fa-star me-2" style="color: #F58634;"></i>5.0 (18)</p>
+//                 <p class="fs-5">₦${product.price}</p>
+//               </div>
+//               <button type="button" class="btn btn-outline-success w-100 py-3 fs-5">Add To Cart</button>
+//             </div>
+//           </div>
+//         `;
+//         productsRow.appendChild(col);
+//       });
+
+//       const imgs = document.querySelectorAll(".productImage");
+
+//       imgs.forEach(img => {
+//         img.addEventListener("mouseenter", () => {
+//           img.classList.remove("fade-out"); // reset
+//           img.classList.add("pulse");
+//         });
+
+//         img.addEventListener("mouseleave", () => {
+//           img.classList.remove("pulse");
+//           img.classList.add("fade-out");
+//         });
+
+//         // Remove fade-out class after animation finishes (so it can trigger again)
+//         img.addEventListener("animationend", () => {
+//           if (img.classList.contains("fade-out")) {
+//             img.classList.remove("fade-out");
+//           }
+//         });
+//       });
+
+//     });
+//   } catch (error) {
+//     console.error("Error loading products:", error);
+//   }
+// };
+
+async function backFiveProducts() {
+  try {
+    const response = await fetch("http://localhost:3001/amazon/document/api/products");
+    if (!response.ok) throw new Error("Failed to fetch products");
+
+    const products = await response.json();
+    console.log("Products:", products);
+
+    const carousels = ["backFive"];
+    const toShow = Array.isArray(products) ? products.slice(-5) : [];
+
+    carousels.forEach(id => {
+      const productsRow = document.getElementById(id);
+      if (!productsRow) return;
+
+      productsRow.innerHTML = "";
+      toShow.forEach(product => {
+        const productId = String(product._id || product.id || product.name.replace(/\s+/g, "-"));
+        const imageSrc = Array.isArray(product.image) ? product.image[0] : product.image;
+
+        const col = document.createElement("div");
+        col.className = "col-12 col-md-6 col-lg-3 mb-4";
+        col.innerHTML = `
+          <div class="card h-100 shadow-sm">
+            <img src="${imageSrc}" alt="${product.name}"
+                 class="card-img-top product-img product-link px-lg-0 px-2"
+                 data-product-id="${productId}"
+                 onclick="goToProductDetails('${productId}')">
+
+            <div class="card-body">
+              <div class="d-flex justify-content-between mt-3">
+                <p>${product.name}</p>
+                <div>
+                  <a href="#"><i class="fa-regular fa-heart fa-2x" style="color: #0F0B0B;"></i></a>
+                </div>
+              </div>
+
+              <p class="card-title fs-5 fw-bold">${product.name}</p>
+
+              <div class="d-flex justify-content-between">
+                <p class="fs-5"><i class="fa-solid fa-star me-2" style="color: #F58634;"></i>5.0 (18)</p>
+                <p class="fs-5">₦${Number(product.price).toLocaleString()}</p>
+              </div>
+
+              <button type="button"
+                class="cart-btn btn btn-outline-success w-100 py-3 fs-5"
+                data-product-id="${productId}"
+                data-product-name="${product.name}"
+                data-product-price="${product.price}"
+                data-product-image="${imageSrc}">
+                Add To Cart
+              </button>
+            </div>
+          </div>
+        `;
+        productsRow.appendChild(col);
+      });
+
+      // ✅ Sync buttons with cart state right away
+      syncCartButtons();
+    });
+  } catch (error) {
+    console.error("Error loading products:", error);
+  }
+}
+
+
+
+ 
+
+// index.js - single file to manage products, cart, badge and cart page
+// Usage: include <script src="index.js" defer></script> on all pages
+
+const CART_KEY = "site_cart_v1";
+let cart = [];
+
+// -------------------- Cart helpers --------------------
+function loadCart() {
+  try {
+    cart = JSON.parse(localStorage.getItem(CART_KEY)) || [];
+  } catch {
+    cart = [];
+  }
+}
+
+function saveCart() {
+  localStorage.setItem(CART_KEY, JSON.stringify(cart));
+  // update same-page UI immediately
+  updateCartCount();
+  syncCartButtons();
+  renderCartPage();
+  // notify any same-page listeners
+  document.dispatchEvent(new CustomEvent("cartUpdated", { detail: { cart } }));
+  // other tabs will receive storage event automatically
+}
+
+function findItem(id) {
+  return cart.find(i => String(i.id) === String(id));
+}
+
+function isInCart(id) {
+  return !!findItem(id);
+}
+
+function addToCart(product) {
+  const existing = findItem(product.id);
+  if (existing) {
+    existing.quantity = (existing.quantity || 1) + 1;
+  } else {
+    cart.push({
+      id: String(product.id),
+      name: product.name,
+      price: Number(product.price || 0),
+      image: product.image || "",
+      quantity: 1
+    });
+  }
+  saveCart();
+}
+
+function removeFromCart(id) {
+  cart = cart.filter(i => String(i.id) !== String(id));
+  saveCart();
+}
+
+function setQty(id, qty) {
+  const item = findItem(id);
+  if (!item) return;
+  item.quantity = Number(qty);
+  if (item.quantity <= 0) removeFromCart(id);
+  else saveCart();
+}
+
+// function toggleCart(product) {
+//   if (isInCart(product.id)) removeFromCart(product.id);
+//   else addToCart(product);
+// }
+
+// -------------------- UI sync --------------------
+// function updateCartCount() {
+//   const cartCount = document.getElementById("cartCount") || document.getElementById("cartCount1") ;
+//   if (!cartCount) return;
+//   const totalProducts = cart.length; // unique products only
+//   cartCount.textContent = totalProducts;
+// }
+function toggleCart(product) {
+  const token = localStorage.getItem("authToken");
+  if (!token) {
+    // 🚨 Not logged in → redirect to login
+    Swal.fire({
+      icon: 'warning',
+      text: 'You must be logged in to add items to cart',
+      confirmButtonColor: '#F58634'
+    }).then(() => {
+      location.href = "./login.html";
+    });
+    return;
+  }
+
+  // ✅ Continue cart logic
+  if (isInCart(product.id)) {
+    removeFromCart(product.id);
+  } else {
+    addToCart(product);
+  }
+}
+
+
+function updateCartCount() {
+  if (typeof cart === 'undefined') return; // make sure `cart` exists
+  const totalProducts = cart.length; // unique products only
+  // select any counters you use (IDs or class)
+  const counters = document.querySelectorAll('#cartCount, #cartCount1, .cart-count');
+  counters.forEach(el => {
+    el.textContent = totalProducts;
+  });
+}
+
+
+// Update all Add/Remove buttons on page
+function syncCartButtons() {
+  document.querySelectorAll(".cart-btn[data-product-id]").forEach(btn => {
+    const pid = btn.dataset.productId;
+    if (isInCart(pid)) {
+      btn.textContent = "Remove From Cart";
+      btn.classList.remove("btn-outline-success");
+      btn.classList.add("btn-danger");
+      btn.setAttribute("aria-pressed", "true");
+    } else {
+      btn.textContent = "Add To Cart";
+      btn.classList.remove("btn-danger");
+      btn.classList.add("btn-outline-success");
+      btn.setAttribute("aria-pressed", "false");
+    }
+  });
+}
+
+// -------------------- Product rendering --------------------
+function renderProducts(products, containerId = "productsRow") {
+  const container = document.getElementById(containerId) || document.getElementById("productContainer");
+  if (!container) return;
+
+  container.innerHTML = "";
+  products.forEach(product => {
+    const productId = String(product._id || product.id || product.name.replace(/\s+/g, "-"));
+
+    // create bootstrap column wrapper if you want grid layout
+    const col = document.createElement("div");
+    col.className = "col-md-6 col-lg-3 mb-4";
+
+    col.innerHTML = `
+      <div class="card h-100 shadow-sm">
+        <img 
+          src="${Array.isArray(product.image) ? product.image[0] : (product.image || '')}"
+          alt="${escapeHtml(product.name)}"
+          class="card-img-top product-img product-link"
+          data-product-id="${productId}"
+          id= "imageReveal"
+          >
+        <div class="card-body d-flex flex-column">
+          <div class="d-flex justify-content-between mt-1 mb-2">
+            <small class="text-muted">Category</small>
+            <a href="#" class="text-dark"><i class="fa-regular fa-heart fa-lg"></i></a>
+          </div>
+          <p class="card-title fs-5 fw-bold mb-2">${escapeHtml(product.name)}</p>
+          <div class="d-flex justify-content-between align-items-center mb-3 ">
+            <div class="small text-muted"><i class="fa-solid fa-star me-1" style="color:#f58634"></i>5.0 (18)</div>
+            <div class="fs-5">₦${Number(product.price || 0).toLocaleString()}</div>
+          </div>
+
+          <button 
+            type="button"
+            class="cart-btn btn btn-outline-success mt-auto w-100 py-3 fs-5"
+            data-product-id="${productId}"
+            data-product-name="${escapeHtml(product.name)}"
+            data-product-price="${product.price}"
+            data-product-image="${Array.isArray(product.image) ? product.image[0] : (product.image || '')}">
+            Add To Cart
+          </button>
+        </div>
+      </div>
+    `;
+
+    container.appendChild(col);
+  });
+
+  // Ensure buttons reflect cart state after render
+  syncCartButtons();
+}
+
+// -------------------- Cart page rendering --------------------
+function renderCartPage() {
+  const container = document.getElementById("cartItems");
+  const totalEl = document.getElementById("cartTotal");
+  if (!container) return; // not on cart page
+
+  container.innerHTML = "";
+  if (!cart.length) {
+    container.innerHTML = "<p>Your cart is empty</p>";
+    if (totalEl) totalEl.textContent = "₦0";
+    return;
+  }
+
+  cart.forEach(item => {
+    const lineTotal = Number(item.price || 0) * Number(item.quantity || 1);
+
+    const row = document.createElement("div");
+    row.className = "d-flex align-items-center justify-content-between p-2 border-bottom flex-wrap";
+    row.style.gap = "12px";
+    row.innerHTML = `
+      <div class="d-flex align-items-center" style="gap:12px;">
+        <img src="${item.image || "https://via.placeholder.com/80"}" alt="${escapeHtml(item.name)}" width="80" height="60" style="object-fit:cover;">
+        <div>
+          <strong>${escapeHtml(item.name)}</strong><br>
+          ₦${lineTotal.toLocaleString()}
+          <small class="text-muted d-block">(₦${Number(item.price || 0).toLocaleString()} each)</small>
+        </div>
+      </div>
+
+      <div class="d-flex align-items-center" style="gap:10px;">
+        <div class="input-group input-group-sm" style="width:110px;">
+          <button class="btn btn-outline-secondary qty-btn" data-id="${item.id}" data-change="-1">−</button>
+          <input type="text" readonly class="form-control text-center" value="${item.quantity}">
+          <button class="btn btn-outline-secondary qty-btn" data-id="${item.id}" data-change="1">+</button>
+        </div>
+
+        <button class="btn btn-danger btn-sm remove-btn" data-id="${item.id}">
+          <i class="fa-solid fa-trash"></i> Remove
+        </button>
+      </div>
+    `;
+    container.appendChild(row);
+  });
+
+  const total = cart.reduce((s, it) => s + (Number(it.price || 0) * Number(it.quantity || 0)), 0);
+  if (totalEl) totalEl.textContent = `₦${total.toLocaleString()}`;
+}
+
+
+// -------------------- Fetching --------------------
+async function loadProductsFromApi() {
+  // try both container ids, so function runs only if product page exists
+  const containerExists = document.getElementById("productsRow") || document.getElementById("productContainer");
+  if (!containerExists) return;
+
+  try {
+    const res = await fetch("http://localhost:3001/amazon/document/api/products");
+    if (!res.ok) throw new Error("Failed to fetch products: " + res.status);
+    const products = await res.json();
+    // normalize if your API returns an object with data: []
+    const list = Array.isArray(products) ? products : (products.data || []);
+    renderProducts(list, "productsRow");
+  } catch (err) {
+    console.error("Error loading products:", err);
+    const container = document.getElementById("productsRow") || document.getElementById("productContainer");
+    if (container) container.innerHTML = `<p class="text-danger">Failed to load products.</p>`;
+  }
+}
+
+// -------------------- Utilities --------------------
+function escapeHtml(s = "") {
+  return String(s)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#39;");
+}
+
+// -------------------- Event delegation --------------------
+document.addEventListener("click", (e) => {
+  // Add / Remove product buttons
+  const cartBtn = e.target.closest(".cart-btn[data-product-id]");
+  if (cartBtn) {
+    const product = {
+      id: cartBtn.dataset.productId,
+      name: cartBtn.dataset.productName,
+      price: parseFloat(cartBtn.dataset.productPrice) || 0,
+      image: cartBtn.dataset.productImage || ""
+    };
+    toggleCart(product);
+    return;
+  }
+
+  // Click on product image -> goToProductDetails(productId) if available, else go to product.html?id=...
+  const productLink = e.target.closest(".product-link[data-product-id]");
+  if (productLink) {
+    const pid = productLink.dataset.productId;
+    if (typeof window.goToProductDetails === "function") {
+      window.goToProductDetails(pid);
+    } else {
+      // fallback navigation
+      window.location.href = `./product.html?id=${encodeURIComponent(pid)}`;
+    }
+    return;
+  }
+
+  // Remove button on cart page
+  const removeBtn = e.target.closest(".remove-btn[data-id]");
+  if (removeBtn) {
+    const id = removeBtn.dataset.id;
+    removeFromCart(id);
+    return;
+  }
+
+  // Qty buttons on cart page
+  const qtyBtn = e.target.closest(".qty-btn[data-id][data-change]");
+  if (qtyBtn) {
+    const id = qtyBtn.dataset.id;
+    const change = Number(qtyBtn.dataset.change || 0);
+    const item = findItem(id);
+    if (item) {
+      setQty(id, (Number(item.quantity || 1) + change));
+    }
+    return;
+  }
+});
+
+// Also listen for custom cartUpdated (internal) so components can react if needed
+document.addEventListener("cartUpdated", () => {
+  // currently handled in saveCart() via direct calls; left here for extensions
+});
+
+// storage event from other tabs
+window.addEventListener("storage", (e) => {
+  if (e.key === CART_KEY) {
+    loadCart();
+    updateCartCount();
+    syncCartButtons();
+    renderCartPage();
+  }
+});
+
+// -------------------- Init on page load --------------------
+document.addEventListener("DOMContentLoaded", () => {
+  loadCart();
+  updateCartCount();
+  // sync any pre-existing buttons (if product HTML was server-rendered)
+  syncCartButtons();
+  renderCartPage();
+  // fetch products and render if on product page
+  loadProductsFromApi();
+});

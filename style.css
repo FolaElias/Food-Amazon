@@ -461,6 +461,42 @@ footer {
   background: #d94d0f;
 }
 
+ .cart-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px;
+      border-bottom: 1px solid #ddd;
+    }
+    .cart-item img {
+      width: 60px;
+      height: 60px;
+      object-fit: cover;
+      margin-right: 15px;
+    }
+    .cart-details {
+      flex: 1;
+    }
+    .qty-controls {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .qty-btn {
+      padding: 4px 8px;
+      cursor: pointer;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      background: #f8f8f8;
+    }
+    .btn-remove {
+      background: #dc3545;
+      color: #fff;
+      border: none;
+      padding: 6px 12px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
 
 @media (max-width: 991.98px) {
   .benefit {
@@ -548,7 +584,7 @@ br {
   width: 100%;
 }
  .cards {
-    flex: 0 0 100%;
+    flex: 0 0 100% !important;
   }
 
 }
