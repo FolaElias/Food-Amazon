@@ -2,6 +2,22 @@ function checkOut() {
     location.href = 'checkout.html'
 };
 
+function togglePassword() {
+  const passwordField = document.getElementById("password");
+  const icon = document.getElementById("togglePasswordIcon");
+
+  if (passwordField.type === "password") {
+    passwordField.type = "text";
+    icon.classList.remove("fa-eye-slash");
+    icon.classList.add("fa-eye");
+  } else {
+    passwordField.type = "password";
+    icon.classList.remove("fa-eye");
+    icon.classList.add("fa-eye-slash");
+  }
+}
+
+
 function signUp(event) { 
     event.preventDefault();
     const spin = document.querySelector('.spin');
@@ -262,22 +278,19 @@ function performLogout() {
   localStorage.removeItem("userEmail");
   localStorage.removeItem("site_cart_v1");
 
-  // optional: clear cart too
-  // localStorage.removeItem("site_cart_v1");
-
   // update UI immediately
   const userStatusDot = document.getElementById("userStatusDot");
   if (userStatusDot) userStatusDot.style.display = "none";
 
   const userLink = document.getElementById("userLink");
   if (userLink) {
-    userLink.setAttribute("href", "../login.html");
+    userLink.setAttribute("href", "/landingpages/login.html"); // ✅ absolute path
     userLink.onclick = null;
   }
 
-  // redirect
+  // redirect to login
   setTimeout(() => {
-    location.href = "./login.html";
+    location.href = "/landingpages/login.html"; // ✅ absolute path
   }, 200);
 }
 
@@ -303,11 +316,12 @@ document.addEventListener("DOMContentLoaded", () => {
     if (userStatusDot) userStatusDot.style.display = "none";
 
     if (userLink) {
-      userLink.setAttribute("href", "./login.html");
+      userLink.setAttribute("href", "/landingpages/login.html"); // ✅ absolute path
       userLink.onclick = null;
     }
   }
 });
+
 
 
 
@@ -340,60 +354,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     
 });
-// ----------------------
-// Show all products
-// ----------------------
-// async function showProducts() {
-//   try {
-//     const response = await fetch("http://localhost:3001/amazon/document/api/products");
-//     if (!response.ok) throw new Error("Failed to fetch products");
-//     const products = await response.json();
-//     console.log("Products:", products);
-//     const productsRow = document.getElementById("productsRow");
-//     if (!productsRow) return;
-//     productsRow.innerHTML = "";
-//     products.forEach(product => {
-//       // Prefer MongoDB _id, fallback to id
-//       const productId = product._id || product.id;
-//       const col = document.createElement("div");
-//       col.className = "col-md-6 col-lg-3 mb-4";
-//       col.innerHTML = `
-//         <div class="card h-100 shadow-sm">
-//           <img src="${Array.isArray(product.image) ? product.image[0] : product.image}"
-//                alt="${product.name}"
-//                class="card-img-top product-img"
-//                id= "imageReveal"
-//                onclick="goToProductDetails('${productId}')">
-//          <div class="card-body">
-//                 <h5 class=""></h5>
-//                     <div class="d-flex justify-content-between mt-3"><p class="">Coconut Flakes</p>
-//                     <div>
-//                     <a href="#"><i class="fa-regular fa-heart fa-2x" style="color: #0f0b0b;"></i></a>
-//                     </div>
-//                 </div>
-//                 <p class = "card-title fs-5 fw-bold">${product.name}</p>
-//               <div class="d-flex justify-content-between">
-//                 <p class="fs-5"><i class="fa-solid fa-star me-2" style="color: #f58634;"></i>5.0 (18)</p>
-//               <p class="fs-5">₦${product.price}</p>
-//             </div>
-//             <button type="button" class="btn btn-outline-success w-100 py-3 fs-5"  id="cartBtn-${productId}"
-//   onclick="toggleCart({
-//     id: '${productId}', 
-//     name: '${product.name}', 
-//     price: ${product.price}, 
-//     image: '${Array.isArray(product.image) ? product.image[0] : product.image}'
-//   })">Add To Cart</button>
-//         </div>
-//       `;
-//       productsRow.appendChild(col);
-//     });
-//   } catch (error) {
-//     console.error("Error loading products:", error);
-//   }
-// }
-// ----------------------
+
 // Show product details
-// ----------------------
 async function productDetails(id) {
   try {
     const res = await fetch(`http://localhost:3001/amazon/document/api/products/${id}`);
@@ -874,10 +836,12 @@ function toggleCart(product) {
       text: 'You must be logged in to add items to cart',
       confirmButtonColor: '#F58634'
     }).then(() => {
-      location.href = "./login.html";
+      location.href = "/landingpages/login.html"; // ✅ absolute path
     });
     return;
   }
+
+
 
   // ✅ Continue cart logic
   if (isInCart(product.id)) {

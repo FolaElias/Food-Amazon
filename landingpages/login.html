@@ -37,9 +37,23 @@
                     <div class="mt-5">
                         <input type="email" class="form-control input-area fs-5 pb-3" id="email" placeholder="Email Address">
                     </div>
-                    <div class="mt-5">
-                        <input type="password" class="form-control input-area fs-5 pb-3" id="password" placeholder="Password" >
-                    </div>
+                  <div class="mt-5 position-relative">
+                    <input 
+                        type="password" 
+                        class="form-control input-area fs-5 pb-3" 
+                        id="password" 
+                        placeholder="Password"
+                    >
+                    <!-- Eye icon -->
+                    <span 
+                        class="position-absolute top-50 end-0 translate-middle-y me-3" 
+                        onclick="togglePassword()" 
+                        style="cursor: pointer;"
+                    >
+                        <i id="togglePasswordIcon" class="fa fa-eye-slash"></i>
+                    </span>
+                </div>
+
                     <!-- check box and forget password section  -->
                      <div class="d-flex justify-content-between mt-5">
                         <div class="form-check">

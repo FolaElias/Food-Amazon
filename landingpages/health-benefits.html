@@ -15,9 +15,12 @@
 <nav class="navbar navbar-expand-lg  px-lg-5">
   <div class="container-fluid">
     <a class="navbar-brand" href="../index.html"><img class="me-lg-5" src="../images/Foodies logo without Banner 1.png" alt=""></a>
-    <a href="#" class="cart-nav">
+     <a href="./cart.html" class="ms-3 position-relative cart-nav">
           <i class="fa-solid fa-bag-shopping fa-2x" style="color: #0f0b0b;"></i>
-          <span class="badge rounded-pill badge-notification bg-warning">2</span>
+          <span id="cartCount1" 
+                class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning">
+            0
+          </span>
         </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -45,18 +48,21 @@
          <a class="link-secondary ms-3" href="#">
         <i class="fa-regular fa-heart fa-2x " style="color: #0f0b0b;"></i>
       </a>
-      <a href="./cart.html" class="ms-3">
+       <!-- Navbar Cart Icon -->
+        <a href="./cart.html" class="ms-3 position-relative">
           <i class="fa-solid fa-bag-shopping fa-2x" style="color: #0f0b0b;"></i>
-          <span class="badge rounded-pill badge-notification bg-warning">2</span>
-        </a>
-        <a href="../login.html">
-          <div class="d-inline-flex position-relative ms-3">
-          <span class="position-absolute top-0 start-100 translate-middle p-1 bg-success border border-light rounded-circle">
-             <span class="visually-hidden">New alerts</span>
+          <span id="cartCount" 
+                class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning">
+            0
+          </span>
+      <a href="./login.html" id="userLink">
+        <div class="d-inline-flex position-relative ms-3">
+          <span id="userStatusDot" class="position-absolute top-0 start-100 translate-middle p-1 bg-success border border-light rounded-circle" style="display:none;">
+            <span class="visually-hidden">Logged in</span>
           </span>
           <i class="fa-regular fa-user fa-2x" style="color: #0f0b0b;"></i>
         </div>
-        </a>
+      </a>
         <button class="btn btn-lg btn-success ms-3" type="submit">Contact Us</button>
       </form>
     </div>
