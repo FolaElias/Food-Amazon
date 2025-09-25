@@ -118,11 +118,7 @@
               <button class="increase2 px-3"><i class="fa-solid fa-plus fa-2x " style="color: #000000;"></i></button>
              </div>
              <p class="fs-5 mt-4">Our Date-Coconut Delight combines the rich sweetness of organic date syrup with the tropical flavor of coconut flakes, creating a snack that’s both indulgent and healthy.</p>
-             <button class="add-cart w-100 fs-5 mt-5" id="fancy"
-             data-product-id="${productId}"
-            data-product-name="${escapeHtml(product.name)}"
-            data-product-price="${product.price}"
-            data-product-image="${Array.isArray(product.image) ? product.image[0] : (product.image || '')}">Add to Cart</button>
+             <button id="productfancy" class="add-cart w-100 fs-5 mt-5 btn btn-outline-success py-3">Add to Cart</button>
              <button class="pay-btn w-100 fs-5 mt-4" id="fancy-2">Check Out</button>
         </div>
     </div>

@@ -106,79 +106,7 @@ function signUp(event) {
     }
 }
 
-// login api
-// function logIn(event) {
-//     event.preventDefault();
-//     const spin = document.querySelector('.spin');
-//     const fancy = document.getElementById('fancy');
-//     spin.style.display = 'inline-block';
-//     fancy.style.pointerEvents = 'none';
 
-//     getEmail = document.getElementById('email').value;
-//     getPassword = document.getElementById('password').value;
-
-//     if (getEmail === "" || getPassword === "") {
-//         Swal.fire({
-//             icon: 'info',
-//             title: 'All fields are required',
-//             confirmButtonColor: '#F58634'
-//         })
-//         spin.style.display = 'none';
-//         fancy.style.pointerEvents = 'auto';
-//     }
-
-//     else {
-//          const signData = {
-//             email: getEmail,
-//             password: getPassword
-//         };
-
-//         const signMethod = {
-//             method: 'POST',
-//             headers: {
-//                 'Content-Type': 'application/json'
-//             },
-//             body: JSON.stringify(signData)
-//         };
-
-//         const url = 'http://localhost:3001/amazon/document/api/login';
-
-//         fetch(url, signMethod)
-//             .then(response => response.json())
-//             .then(result => {
-//                 console.log(result)
-//                   if (result.hasOwnProperty("email")) {
-//                 localStorage.setItem("key", result.token)
-//                 location.href = "./index.html"
-//             }
-//             else {
-//                 Swal.fire({
-//                     icon: 'info',
-//                     text: `${result.message}`,
-//                     confirmButtonColor: "#2D85DE"
-//                 })
-//                 spinItem.style.display = "none";
-//             }
-//             })
-//             .catch(error => {
-//                 console.log('error', error)
-//                 Swal.fire({
-//                 icon: 'info',
-//                 text: `${result.message}`,
-//                 confirmButtonColor: "#2D85DE"
-//             })
-//             });
-//             // .then(res => res.json())
-//             // .then(token => {
-//             //     console.log("JWT Token:", token);
-//             //       setTimeout(() => {
-//             //             location.href = './index.html'
-//             //         }, 3000)
-//             // })
-//             //  .catch(err => console.error("Error:", err));
-                    
-//     }
-// }
 // ✅ LOGIN FUNCTION
 function logIn(event) {
   event.preventDefault();
@@ -322,19 +250,6 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 document.addEventListener('DOMContentLoaded', function() {
   showProducts();
   fiveProducts();
@@ -466,9 +381,6 @@ async function productDetails(id) {
     console.error("Error loading product:", error);
   }
 }
-// ----------------------
-// Redirect helper
-// ----------------------
 function goToProductDetails(id) {
   // First try landingpages/
   const testPath = "/landingpages/product-details.html";
@@ -488,57 +400,6 @@ function goToProductDetails(id) {
 
 
 
-// async function fiveProducts() {
-//   try {
-//     const response = await fetch("http://localhost:3001/amazon/document/api/products");
-//     if (!response.ok) throw new Error("Failed to fetch products");
-    
-//     const products = await response.json();
-//     console.log("Products:", products);
-
-//     const carousels = ["carousel1", "carousel2"]; // both IDs
-//     const toShow = Array.isArray(products) ? products.slice(0, 5) : [];
-
-//     carousels.forEach(id => {
-//       const productsRow = document.getElementById(id);
-//       if (!productsRow) return;
-
-//       productsRow.innerHTML = "";
-//       toShow.forEach(product => {
-//         const productId = product._id || product.id;
-//         const imageSrc = Array.isArray(product.image) ? product.image[0] : product.image;
-
-//         const col = document.createElement("div");
-//         col.className = "col-12 col-md-6 col-lg-3 mb-4";
-//         col.innerHTML = `
-//           <div class="card h-100 shadow-sm">
-//             <img src="${imageSrc}" alt="${product.name}"
-//                  class="card-img-top product-img px-lg-0 px-2"
-//                  id="imageReveal"
-//                  onclick="goToProductDetails('${productId}')">
-//             <div class="card-body">
-//               <div class="d-flex justify-content-between mt-3">
-//                 <p>${product.name}</p>
-//                 <div>
-//                   <a href="#"><i class="fa-regular fa-heart fa-2x" style="color: #0F0B0B;"></i></a>
-//                 </div>
-//               </div>
-//               <p class="card-title fs-5 fw-bold">${product.name}</p>
-//               <div class="d-flex justify-content-between">
-//                 <p class="fs-5"><i class="fa-solid fa-star me-2" style="color: #F58634;"></i>5.0 (18)</p>
-//                 <p class="fs-5">₦${product.price}</p>
-//               </div>
-//               <button type="button" class="btn btn-outline-success w-100 py-3 fs-5">Add To Cart</button>
-//             </div>
-//           </div>
-//         `;
-//         productsRow.appendChild(col);
-//       });
-//     });
-//   } catch (error) {
-//     console.error("Error loading products:", error);
-//   }
-// }
 
 async function fiveProducts() {
   try {
@@ -605,82 +466,6 @@ async function fiveProducts() {
     console.error("Error loading products:", error);
   }
 }
-
-
-
-
-// async function backFiveProducts() {
-//   try {
-//     const response = await fetch("http://localhost:3001/amazon/document/api/products");
-//     if (!response.ok) throw new Error("Failed to fetch products");
-
-//     const products = await response.json();
-//     console.log("Products:", products);
-
-//     const carousels = ["backFive"];
-//     const toShow = Array.isArray(products) ? products.slice(-5) : [];
-
-//     carousels.forEach(id => {
-//       const productsRow = document.getElementById(id);
-//       if (!productsRow) return;
-
-//       productsRow.innerHTML = "";
-//       toShow.forEach(product => {
-//         const productId = product._id || product.id;
-//         const imageSrc = Array.isArray(product.image) ? product.image[0] : product.image;
-
-//         const col = document.createElement("div");
-//         col.className = "col-12 col-md-6 col-lg-3 mb-4";
-//         col.innerHTML = `
-//           <div class="card h-100 shadow-sm">
-//             <img src="${imageSrc}" alt="${product.name}"
-//                  class="card-img-top product-img productImage px-lg-0 px-2"
-//                  onclick="goToProductDetails('${productId}')">
-//             <div class="card-body">
-//               <div class="d-flex justify-content-between mt-3">
-//                 <p>${product.name}</p>
-//                 <div>
-//                   <a href="#"><i class="fa-regular fa-heart fa-2x" style="color: #0F0B0B;"></i></a>
-//                 </div>
-//               </div>
-//               <p class="card-title fs-5 fw-bold">${product.name}</p>
-//               <div class="d-flex justify-content-between">
-//                 <p class="fs-5"><i class="fa-solid fa-star me-2" style="color: #F58634;"></i>5.0 (18)</p>
-//                 <p class="fs-5">₦${product.price}</p>
-//               </div>
-//               <button type="button" class="btn btn-outline-success w-100 py-3 fs-5">Add To Cart</button>
-//             </div>
-//           </div>
-//         `;
-//         productsRow.appendChild(col);
-//       });
-
-//       const imgs = document.querySelectorAll(".productImage");
-
-//       imgs.forEach(img => {
-//         img.addEventListener("mouseenter", () => {
-//           img.classList.remove("fade-out"); // reset
-//           img.classList.add("pulse");
-//         });
-
-//         img.addEventListener("mouseleave", () => {
-//           img.classList.remove("pulse");
-//           img.classList.add("fade-out");
-//         });
-
-//         // Remove fade-out class after animation finishes (so it can trigger again)
-//         img.addEventListener("animationend", () => {
-//           if (img.classList.contains("fade-out")) {
-//             img.classList.remove("fade-out");
-//           }
-//         });
-//       });
-
-//     });
-//   } catch (error) {
-//     console.error("Error loading products:", error);
-//   }
-// };
 
 async function backFiveProducts() {
   try {
@@ -752,11 +537,38 @@ async function backFiveProducts() {
 
  
 
-// index.js - single file to manage products, cart, badge and cart page
-// Usage: include <script src="index.js" defer></script> on all pages
 
 const CART_KEY = "site_cart_v1";
 let cart = [];
+
+// -------------------- Toast Setup --------------------
+const Toast = Swal.mixin({
+  toast: true,
+  position: "top-end",
+  showConfirmButton: false,
+  timer: 4000,
+  timerProgressBar: true,
+  didOpen: (toast) => {
+    toast.addEventListener("mouseenter", Swal.stopTimer);
+    toast.addEventListener("mouseleave", Swal.resumeTimer);
+  }
+});
+
+let toastOffset = 0;
+function showStackedToast(icon, title) {
+  Toast.fire({
+    icon,
+    title,
+    didOpen: (toast) => {
+      toast.style.marginTop = `${toastOffset}px`;
+      toastOffset += 60;
+
+      toast.addEventListener("animationend", () => {
+        toastOffset = 0;
+      });
+    }
+  });
+}
 
 // -------------------- Cart helpers --------------------
 function loadCart() {
@@ -764,18 +576,15 @@ function loadCart() {
     cart = JSON.parse(localStorage.getItem(CART_KEY)) || [];
   } catch {
     cart = [];
-  }
+  }    
 }
 
 function saveCart() {
   localStorage.setItem(CART_KEY, JSON.stringify(cart));
-  // update same-page UI immediately
   updateCartCount();
   syncCartButtons();
   renderCartPage();
-  // notify any same-page listeners
   document.dispatchEvent(new CustomEvent("cartUpdated", { detail: { cart } }));
-  // other tabs will receive storage event automatically
 }
 
 function findItem(id) {
@@ -800,11 +609,16 @@ function addToCart(product) {
     });
   }
   saveCart();
+  showStackedToast("success", `${product.name} added to cart`);
 }
 
 function removeFromCart(id) {
+  const item = findItem(id);
   cart = cart.filter(i => String(i.id) !== String(id));
   saveCart();
+  if (item) {
+    showStackedToast("error", `${item.name} removed from cart`);
+  }
 }
 
 function setQty(id, qty) {
@@ -815,35 +629,19 @@ function setQty(id, qty) {
   else saveCart();
 }
 
-// function toggleCart(product) {
-//   if (isInCart(product.id)) removeFromCart(product.id);
-//   else addToCart(product);
-// }
-
-// -------------------- UI sync --------------------
-// function updateCartCount() {
-//   const cartCount = document.getElementById("cartCount") || document.getElementById("cartCount1") ;
-//   if (!cartCount) return;
-//   const totalProducts = cart.length; // unique products only
-//   cartCount.textContent = totalProducts;
-// }
 function toggleCart(product) {
   const token = localStorage.getItem("authToken");
   if (!token) {
-    // 🚨 Not logged in → redirect to login
     Swal.fire({
       icon: 'warning',
       text: 'You must be logged in to add items to cart',
       confirmButtonColor: '#F58634'
     }).then(() => {
-      location.href = "/landingpages/login.html"; // ✅ absolute path
+      location.href = "/landingpages/login.html";
     });
     return;
   }
 
-
-
-  // ✅ Continue cart logic
   if (isInCart(product.id)) {
     removeFromCart(product.id);
   } else {
@@ -851,21 +649,18 @@ function toggleCart(product) {
   }
 }
 
-
+// -------------------- UI sync --------------------
 function updateCartCount() {
-  if (typeof cart === 'undefined') return; // make sure `cart` exists
-  const totalProducts = cart.length; // unique products only
-  // select any counters you use (IDs or class)
+  if (typeof cart === 'undefined') return;
+  const totalProducts = cart.length;
   const counters = document.querySelectorAll('#cartCount, #cartCount1, .cart-count');
   counters.forEach(el => {
     el.textContent = totalProducts;
   });
 }
 
-
-// Update all Add/Remove buttons on page
 function syncCartButtons() {
-  document.querySelectorAll(".cart-btn[data-product-id]").forEach(btn => {
+  document.querySelectorAll(".cart-btn[data-product-id], .add-cart[data-product-id]").forEach(btn => {
     const pid = btn.dataset.productId;
     if (isInCart(pid)) {
       btn.textContent = "Remove From Cart";
@@ -881,6 +676,9 @@ function syncCartButtons() {
   });
 }
 
+
+
+
 // -------------------- Product rendering --------------------
 function renderProducts(products, containerId = "productsRow") {
   const container = document.getElementById(containerId) || document.getElementById("productContainer");
@@ -890,7 +688,6 @@ function renderProducts(products, containerId = "productsRow") {
   products.forEach(product => {
     const productId = String(product._id || product.id || product.name.replace(/\s+/g, "-"));
 
-    // create bootstrap column wrapper if you want grid layout
     const col = document.createElement("div");
     col.className = "col-md-6 col-lg-3 mb-4";
 
@@ -901,8 +698,8 @@ function renderProducts(products, containerId = "productsRow") {
           alt="${escapeHtml(product.name)}"
           class="card-img-top product-img product-link"
           data-product-id="${productId}"
-          id= "imageReveal"
-          >
+          id="imageReveal"
+        >
         <div class="card-body d-flex flex-column">
           <div class="d-flex justify-content-between mt-1 mb-2">
             <small class="text-muted">Category</small>
@@ -930,7 +727,6 @@ function renderProducts(products, containerId = "productsRow") {
     container.appendChild(col);
   });
 
-  // Ensure buttons reflect cart state after render
   syncCartButtons();
 }
 
@@ -938,7 +734,7 @@ function renderProducts(products, containerId = "productsRow") {
 function renderCartPage() {
   const container = document.getElementById("cartItems");
   const totalEl = document.getElementById("cartTotal");
-  if (!container) return; // not on cart page
+  if (!container) return;
 
   container.innerHTML = "";
   if (!cart.length) {
@@ -982,10 +778,8 @@ function renderCartPage() {
   if (totalEl) totalEl.textContent = `₦${total.toLocaleString()}`;
 }
 
-
 // -------------------- Fetching --------------------
 async function loadProductsFromApi() {
-  // try both container ids, so function runs only if product page exists
   const containerExists = document.getElementById("productsRow") || document.getElementById("productContainer");
   if (!containerExists) return;
 
@@ -993,7 +787,6 @@ async function loadProductsFromApi() {
     const res = await fetch("http://localhost:3001/amazon/document/api/products");
     if (!res.ok) throw new Error("Failed to fetch products: " + res.status);
     const products = await res.json();
-    // normalize if your API returns an object with data: []
     const list = Array.isArray(products) ? products : (products.data || []);
     renderProducts(list, "productsRow");
   } catch (err) {
@@ -1015,8 +808,7 @@ function escapeHtml(s = "") {
 
 // -------------------- Event delegation --------------------
 document.addEventListener("click", (e) => {
-  // Add / Remove product buttons
-  const cartBtn = e.target.closest(".cart-btn[data-product-id]");
+  const cartBtn = e.target.closest(".cart-btn[data-product-id], .add-cart[data-product-id]");
   if (cartBtn) {
     const product = {
       id: cartBtn.dataset.productId,
@@ -1028,20 +820,17 @@ document.addEventListener("click", (e) => {
     return;
   }
 
-  // Click on product image -> goToProductDetails(productId) if available, else go to product.html?id=...
   const productLink = e.target.closest(".product-link[data-product-id]");
   if (productLink) {
     const pid = productLink.dataset.productId;
     if (typeof window.goToProductDetails === "function") {
       window.goToProductDetails(pid);
     } else {
-      // fallback navigation
       window.location.href = `./product.html?id=${encodeURIComponent(pid)}`;
     }
     return;
   }
 
-  // Remove button on cart page
   const removeBtn = e.target.closest(".remove-btn[data-id]");
   if (removeBtn) {
     const id = removeBtn.dataset.id;
@@ -1049,7 +838,6 @@ document.addEventListener("click", (e) => {
     return;
   }
 
-  // Qty buttons on cart page
   const qtyBtn = e.target.closest(".qty-btn[data-id][data-change]");
   if (qtyBtn) {
     const id = qtyBtn.dataset.id;
@@ -1062,12 +850,15 @@ document.addEventListener("click", (e) => {
   }
 });
 
-// Also listen for custom cartUpdated (internal) so components can react if needed
-document.addEventListener("cartUpdated", () => {
-  // currently handled in saveCart() via direct calls; left here for extensions
+// -------------------- Init on page load --------------------
+document.addEventListener("DOMContentLoaded", () => {
+  loadCart();
+  updateCartCount();
+  syncCartButtons();
+  renderCartPage();
+  loadProductsFromApi();
 });
 
-// storage event from other tabs
 window.addEventListener("storage", (e) => {
   if (e.key === CART_KEY) {
     loadCart();
@@ -1077,13 +868,3 @@ window.addEventListener("storage", (e) => {
   }
 });
 
-// -------------------- Init on page load --------------------
-document.addEventListener("DOMContentLoaded", () => {
-  loadCart();
-  updateCartCount();
-  // sync any pre-existing buttons (if product HTML was server-rendered)
-  syncCartButtons();
-  renderCartPage();
-  // fetch products and render if on product page
-  loadProductsFromApi();
-});
