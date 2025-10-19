@@ -259,12 +259,15 @@ footer {
 }
 
 .imagehousing {
-  width: 200px;
+  width: 250px;
   height: 200px;
 }
 
 .imagehousing img {
   width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  object-fit: cover;
 }
 
 .RomoveBTNN {
@@ -368,7 +371,7 @@ footer {
 
 
 .cards{
-  flex: 0 0 35em;
+  flex: 0 0 25em;
   scroll-snap-align: start;
 }
 
@@ -457,6 +460,10 @@ footer {
   transition: background 0.2s;
 }
 
+.cart-btn {
+  font-size: 20px;
+}
+
 .carousel-btn:hover {
   background: #d94d0f;
 }
@@ -497,6 +504,72 @@ footer {
       cursor: pointer;
       border-radius: 5px;
     }
+
+    .details-wrapper{
+      width: 100%;
+      height: 60px;
+      border: 2px solid black;
+      border-radius: 5px;
+       display: flex;               /* make it a flex container */
+      align-items: center;         /* vertical center */
+      justify-content: center;
+    } 
+
+
+
+
+
+.stats-section {
+  background-color: #259B00;
+  padding: 60px 20px;
+  position: relative;
+  overflow: hidden;
+  border-top-left-radius: 60px;
+}
+
+.stats-grid {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  text-align: center;
+  gap: 200px;
+}
+
+.stat-item h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: #fff;
+}
+
+.stat-item p {
+  font-size: 1rem;
+  opacity: 0.9;
+}
+
+/* Optional subtle background line-art effect */
+.stats-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("./images/pattern.png"); /* your faint line drawings */
+  background-size: contain;
+  background-repeat: repeat;
+  opacity: 0.2;
+  z-index: 0;
+}
+
+.stats-grid > * {
+  position: relative;
+  z-index: 1;
+}
+
+
+
 
 @media (max-width: 991.98px) {
   .benefit {
@@ -573,6 +646,16 @@ br {
   margin-top: 15px;
 }
 
+.image-no{
+  flex-direction: column;
+}
+
+.imagehousing {
+  width: 100%;
+  height: auto;
+  margin-bottom: 10px;
+}
+
 br {
   display: none;
 }
@@ -586,6 +669,10 @@ br {
  .cards {
     flex: 0 0 100% !important;
   }
+  .product-main-image{
+    width: 100%;
+    height: auto;
+  }
 
 }
 
@@ -597,4 +684,43 @@ br {
   .image-her img {
     width: 100%;
   }
+}
+
+@media screen and (min-width: 1000px) and (max-width:1150px) {
+  nav {
+    width: 100%;
+  }
+  nav ul li {
+    font-size: 15px;
+    margin: 0px !important;
+  }
+
+  nav img{
+    margin: 0px;
+  }
+  .hero-section br {
+    display: none;
+  }
+
+  .hiiw{ 
+    width: 100%;
+  }
+
+  .pup-text{
+    font-size: 18px !important;
+  }
+
+  .product-img {
+    height: 200px;
+  }
+
+  .card-title {
+    font-size: 20px;
+  }
+
+  .cart-btn{
+    font-size: 15px;
+  }
+
+  
 }

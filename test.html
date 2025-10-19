@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div>
+        <div>
+         <div class="d-flex justify-content-between item-btn pb-3">
+            <p>Item 1</p>
+           <div class="d-flex item-btn2">
+             <div class="btn-later fs">
+             <button>Save for later</button>
+                  <button class="btn btn-danger btn-sm remove-btn" data-id="${item.id}">
+                <i class="fa-solid fa-trash"></i> Remove
+            </button>
+                
+            </div>
+           <div class="d-flex align-items-center" style="gap:10px;">
+                <div class="input-group input-group-sm" style="width:110px;">
+                <button class="btn btn-outline-secondary qty-btn" data-id="${item.id}" data-change="-1">−</button>
+                <input type="text" readonly class="form-control text-center" value="${item.quantity}">
+                <button class="btn btn-outline-secondary qty-btn" data-id="${item.id}" data-change="1">+</button>
+                </div>
+             </div>
+           </div>
+         </div> 1
+          <div class="d-flex mt-4">
+            <div class="imagehousing">
+                <img src="${item.image || "https://via.placeholder.com/80"}" alt="${escapeHtml(item.name)}" >
+            </div>
+            <div class="ms-5 mt-0">
+                <strong>${escapeHtml(item.name)}</strong><br>
+                <p class="fs-5">Cart ID: 12345678910</p>
+                  ₦${lineTotal.toLocaleString()}
+          <small class="text-muted d-block">(₦${Number(item.price || 0).toLocaleString()} each)</small>
+            </div>
+         </div>
+      </div> 
+    </div>
+
+    <section class="stats-section">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-item">
+        <h2>1975+</h2>
+        <p>Total Products</p>
+      </div>
+      <div class="stat-item">
+        <h2>2880+</h2>
+        <p>Satisfied Clients</p>
+      </div>
+      <div class="stat-item">
+        <h2>3219+</h2>
+        <p>Product Sales</p>
+      </div>
+      <div class="stat-item">
+        <h2>100%</h2>
+        <p>Guarantee</p>
+      </div>
+    </div>
+  </div>
+</section>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const counters = document.querySelectorAll(".stat-item h2");
+  counters.forEach(counter => {
+    const target = +counter.textContent.replace(/\D/g, "");
+    let count = 0;
+    const speed = 50; // smaller = faster
+    const updateCount = () => {
+      if (count < target) {
+        count += Math.ceil(target / 50);
+        counter.textContent = count + "+";
+        setTimeout(updateCount, speed);
+      } else {
+        counter.textContent = target + "+";
+      }
+    };
+    updateCount();
+  });
+});
+</script>
+
+</body>
+</html>

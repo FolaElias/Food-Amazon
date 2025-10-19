@@ -38,8 +38,14 @@
          <li class="nav-item">
           <a class="nav-link " href="#">Blog</a>
         </li>
-         <li class="nav-item">
-          <a class="nav-link " href="#">FAQs</a>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            FAQs
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item  fs-5 fw-bold" href="#">About You</a></li>
+            
+          </ul>
         </li>
       </ul>
       <form class="d-flex" role="search">
@@ -76,8 +82,8 @@
             <form action="#" class="check-input">
                 <!-- email address input  -->
                 <div class="form-outline" data-mdb-input-init>
-                    <input type="email" id="typeEmail" class="form-control" />
-                    <label class="form-label fs-5 mt-2" for="typeEmail">Your email address</label>
+                    <input type="email" id="email" class="form-control" />
+              
                 </div>
                 <!-- residential address input -->
                  <p class="fw-bold fs-5 mt-4">Deliver to</p>
@@ -89,38 +95,35 @@
                 </select>
                 <!-- country input -->
                  <p class="fw-bold fs-5 mt-4">Country</p>
-                 <select class="form-select fs-5" style="color: #566363;" aria-label="Default select example">
-                    <option selected>Nigeria</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
+                 <select id="country" class="form-select fs-5">
+                  <option value="Nigeria" selected>Nigeria</option>
                 </select>
                 <!-- 2 column grid layout with text inputs for the first and last names -->
                 <div class="row mb-4 g-0 mt-4">
                     <div class="col">
                         <div data-mdb-input-init class="form-outline">
-                            <input type="text" id="form6Example1" class="form-control" />
-                            <label class="form-label fs-5 mt-2" for="form6Example1">First name</label>
+                            <input type="text" id="firstName" class="form-control" />
+                         
                         </div>
                      </div>
                     <div class="col ps-3">
                         <div data-mdb-input-init class="form-outline">
-                            <input type="text" id="form6Example2" class="form-control" />
-                            <label class="form-label fs-5 mt-2" for="form6Example2">Last name</label>
+                            <input type="text" id="lastName" class="form-control" />
                         </div>
                     </div>
                 </div>
                 <!-- text input for address -->
                  <div class="form-outline" data-mdb-input-init>
-                     <input type="text" id="form12" class="form-control" />
-                    <label class="form-label fs-5 mt-2" for="form12">Your address</label>
+                     <input type="text" id="address" class="form-control" />
+                    <label class="form-label fs-5 mt-2" for="address">Your address</label>
                 </div>
                 <!-- zip code and co input -->
                  <div class="row mb-4 g-0 mt-4">
                     <div class="col">
                         <div data-mdb-input-init class="form-outline">
-                            <input type="text" id="form6Example1" class="form-control" />
-                            <label class="form-label fs-5 mt-2" for="form6Example1">City</label>
+                            <select id="city" class="form-select fs-5">
+                              <option value="">Select City</option>
+                            </select>
                         </div>
                      </div>
                      <div class="col px-3">
@@ -133,22 +136,23 @@
                      </div>
                     <div class="col">
                         <div data-mdb-input-init class="form-outline">
-                            <input type="text" id="form6Example2" class="form-control" />
-                            <label class="form-label fs-5 mt-2" for="form6Example2">Zip code</label>
+                            <select id="state" class="form-select fs-5">
+                              <option value="">Select State</option>
+                            </select>
                         </div>
                     </div>
                 </div>
                 <!-- phone number input -->
                  <div class="form-outline" data-mdb-input-init>
-                    <input type="number" id="typeNumber" class="form-control" />
-                    <label class="form-label fs-5 mt-2" for="typeNumber">Your phone number</label>
+                    <input type="number" id="phone" class="form-control" />
+                    
                 </div>
                 <!-- text area input -->
                  <div class="mt-4">
                     <p class="fs-5">Order Note <span style="color: #566363;">(optional)</span></p>
                     <div class="form-outline" data-mdb-input-init>
-                        <textarea class="form-control" id="textAreaExample" rows="8"></textarea>
-                        <label class="form-label fs-5" for="textAreaExample">Tell us what do you think</label>
+                        <textarea class="form-control" id="orderNote" rows="8"></textarea>
+                        <label class="form-label fs-5" for="orderNote">Tell us what do you think</label>
                     </div>
                  </div>
             </form>
@@ -156,104 +160,8 @@
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 ps-lg-5 mt-lg-0 mt-5">
           <p class="bill fs-3 fw-bold" style="color: #131717;">Your Order</p>
           <!-- price details section  -->
-          <div class="price-details py-3">
-            <div class="d-flex justify-content-between">
-                <p>Original Price</p>
-                <p>₦582.00</p>
-          </div>
-           <div class="d-flex justify-content-between">
-                <p>Saving</p>
-                <p>₦82.00</p>
-          </div>
-           <div class="d-flex justify-content-between">
-                <p>Shipping</p>
-                <p>FREE</p>
-          </div>
-           <div class="d-flex justify-content-between">
-                <p>Estimated Sales tax</p>
-                <p>₦3.50</p>
-          </div>
-          </div>
-          <!-- total price section -->
-          <div class=" d-flex justify-content-between mt-3">
-              <p class="fs-5 fw-bold" style="color: #131717;">Total Price</p>
-              <p class="fs-5 fw-bold" style="color: #131717;">₦496.50</p>
-          </div>
-          <!-- payment method section -->
-           <form action="#" class="mt-5 check-input">
-            <p class="bill fs-3 fw-bold" style="color: #131717;">Pay With</p>
-            <div class="d-flex justify-content-between mt-3">
-              <div class="form-check">
-                <input class="form-check-input radio" type="radio" name="flexRadioDefault" id="flexRadioDefault1"/>
-                <label class="form-check-label" for="flexRadioDefault1">Card</label>
-              </div>
-              <div>
-                <img src="../images/visa.png" alt="">
-              </div>
-            </div>
-            <!-- card number input -->
-             <div class="row mb-4 g-0 mt-4">
-              <div class="col-sm-12 col-md-12 col-lg-6 mt-4 pe-2">
-                 <div class="form-outline" data-mdb-input-init>
-                    <input type="number" id="typeNumber" class="form-control" />
-                    <label class="form-label fs-5 mt-2" for="typeNumber">Card number</label>
-                </div>
-              </div>
-              <div class="col-sm-12 col-md-12 col-lg-6"></div>
-             </div>
-             <!-- card expiry date and cvv input -->
-              <div class="row mb-4 g-0 mt-4">
-                    <div class="col">
-                        <div data-mdb-input-init class="form-outline">
-                            <input type="number" id="form6Example1" class="form-control" />
-                            <label class="form-label fs-5 mt-2" for="form6Example1">Expiration date</label>
-                        </div>
-                     </div>
-                    <div class="col ps-3">
-                        <div data-mdb-input-init class="form-outline">
-                            <input type="number" id="form6Example2" class="form-control" />
-                            <label class="form-label fs-5 mt-2" for="form6Example2">Security code</label>
-                        </div>
-                    </div>
-                </div>
-                <!-- name input section  -->
-                 <div class="row mb-4 g-0 mt-4">
-                    <div class="col">
-                        <div data-mdb-input-init class="form-outline">
-                            <input type="text" id="form6Example1" class="form-control" />
-                            <label class="form-label fs-5 mt-2" for="form6Example1">First name</label>
-                        </div>
-                     </div>
-                    <div class="col ps-3">
-                        <div data-mdb-input-init class="form-outline">
-                            <input type="text" id="form6Example2" class="form-control" />
-                            <label class="form-label fs-5 mt-2" for="form6Example2">Last name</label>
-                        </div>
-                    </div>
-                </div>
-           </form>
-           <!-- buttons and checkbox section -->
-                 <div class="btn-checks pb-4">
-                  <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
-                    <label class="form-check-label" for="flexCheckDefault">Remember this card for future order</label>
-                  </div>
-                  <div class="btns mt-4"> 
-                    <button class="done-btn fs-5">Done</button>
-                    <button class="cancel-btn fs-5 ms-lg-4">Cancel</button>
-                  </div>
-                 </div>
-                 <!-- paypal select  -->
-                <div class="d-flex justify-content-between mt-4">
-                  <div class="form-check">
-                    <input class="form-check-input radio" type="radio" name="flexRadioDefault" id="flexRadioDefault1"/>
-                    <label class="form-check-label" for="flexRadioDefault1">Paypal</label>
-                  </div>
-                  <div>
-                    <img src="../images/paypal.png" alt="">
-                  </div>
-                </div>
-                <button class="w-100 pay-btn fs-5 mt-4">Place Order</button>
+          <div id="orderSummary1"></div>
+          
         </div>
 </section>
 
@@ -363,14 +271,548 @@
 <!-- Footer -->
 
 
-
-
+          
+    </div>
+    <script src="https://js.paystack.co/v1/inline.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
      <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/js/all.min.js" integrity="sha512-b+nQTCdtTBIRIbraqNEwsjB6UvL3UEMkXnhzd8awtCYh0Kcsjl9uEgwVFVbhoj3uu1DO1ZMacNvLoyJJiNfcvg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/9.1.0/mdb.umd.min.js"></script>
      <script src="../index.js"></script>
+     <script src="../cart.js"></script>
+<!-- 
+<script>
+function parseJwt(token) {
+  try {
+    const base64Url = token.split(".")[1];
+    const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
+    return JSON.parse(window.atob(base64));
+  } catch (err) {
+    console.error("❌ Invalid token", err);
+    return null;
+  }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  const btn = document.getElementById("placeOrderBtn");
+  if (!btn) return console.error("❌ placeOrderBtn not found in DOM");
+
+  btn.addEventListener("click", async (e) => {
+    e.preventDefault();
+    console.log("🟢 Place Order clicked");
+
+    // Collect form values
+    const firstName = document.getElementById("firstName")?.value.trim();
+    const lastName = document.getElementById("lastName")?.value.trim();
+    const email = document.getElementById("email")?.value.trim();
+    const phone = document.getElementById("phone")?.value.trim();
+    const state = document.getElementById("state")?.value.trim();
+    const city = document.getElementById("city")?.value.trim();
+
+    if (!firstName || !lastName || !email || !phone || !state || !city) {
+      return Swal.fire({
+        icon: "warning",
+        title: "Missing Information",
+        text: "Please fill in all required fields.",
+        confirmButtonColor: "#F58634"
+      });
+    }
+
+    // Decode token to get customerId
+    const token = localStorage.getItem("authToken");
+    const decoded = parseJwt(token);
+    const customerId = decoded?.id || decoded?._id || decoded?.userId;
+
+    if (!customerId) {
+      return Swal.fire({
+        icon: "warning",
+        title: "Login Required",
+        text: "You must be logged in to place an order.",
+        confirmButtonColor: "#F58634"
+      }).then(() => window.location.href = "./login.html");
+    }
+
+    // Load cart
+    const cart = JSON.parse(localStorage.getItem("site_cart_v1")) || [];
+    if (!cart.length) {
+      return Swal.fire({
+        icon: "warning",
+        title: "Empty Cart",
+        text: "Your cart is empty. Please add items before placing an order.",
+        confirmButtonColor: "#F58634"
+      });
+    }
+
+
+    // Format items & calculate totals
+    const items = cart.map(item => ({
+      productId: item.id,
+      name: item.name,
+      image: item.image,
+      price: item.price,
+      quantity: item.quantity,
+      subTotal: item.price * item.quantity
+    }));
+
+    const originalPrice = items.reduce((acc, item) => acc + item.subTotal, 0);
+    const savings = Math.round(originalPrice * 0.05);
+    const estimatedTax = Math.round((originalPrice - savings) * 0.05);
+    const total = originalPrice - savings + estimatedTax;
+
+    // Step 1: Create order in your backend
+    const orderPayload = {
+      customerId,
+      customerSnapshot: { firstName, lastName, email, phone, state, city },
+      items,
+      totalAmount: total,
+    };
+
+    console.log("🚀 Sending order payload:", orderPayload);
+
+    let orderData;
+    try {
+      const response = await fetch("http://localhost:3001/amazon/document/api/orders/create", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(orderPayload),
+      });
+      console.log(response)
+
+
+      if (!response.ok) {
+        console.log(response)
+        const text = await response.text();
+        throw new Error(`Backend returned HTTP ${response.status}: ${text}`);
+      }
+
+      orderData = await response.json();
+      console.log("🔵 Backend response:", orderData);
+
+      if (!orderData.success || !orderData.orderId) {
+        throw new Error(orderData.message || "Order creation failed");
+      }
+
+    } catch (err) {
+      console.error("❌ Backend error:", err);
+      return Swal.fire({
+        icon: "error",
+        title: "Order Failed",
+        text: err.message,
+        confirmButtonColor: "#F58634"
+      });
+    }
+
+    // Step 2: Initialize Paystack payment
+    const PAYSTACK_SECRET_KEY = "pk_test_7ad8c7c3f6689347207949dd85748cd04666ad11"; // Replace with your secret key
+    const PAYSTACK_URL = "https://api.paystack.co/transaction/initialize";
+
+    const paymentPayload = {
+      email,
+      amount: total * 100, // in kobo
+      currency: "NGN",
+       metadata: { orderId: order._id.toString() },
+      callback_url: "http://127.0.0.1:5501/landingpages/payment-confirmation.html"
+    };
+
+    console.log("🚀 Initializing Paystack with payload:", paymentPayload);
+
+    try {
+      const response = await fetch(PAYSTACK_URL, {
+        method: "POST",
+        headers: {
+          "Authorization": "Bearer pk_test_7ad8c7c3f6689347207949dd85748cd04666ad11",
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(paymentPayload)
+      });
+
+      if (!response.ok) {
+        const text = await response.text();
+        throw new Error(`Paystack returned HTTP ${response.status}: ${text}`);
+      }
+
+      const paystackData = await response.json();
+      console.log("🔵 Paystack response:", paystackData);
+
+      if (!paystackData.status || !paystackData.data?.authorization_url) {
+        throw new Error(paystackData.message || "Payment initialization failed");
+      }
+
+      // Success — redirect user
+      Swal.fire({
+        icon: "success",
+        title: "Order Created!",
+        text: "Redirecting to Paystack for secure payment...",
+        showConfirmButton: false,
+        timer: 2000
+      }).then(() => window.location.href = paystackData.data.authorization_url);
+
+    } catch (err) {
+      console.error("❌ Paystack error:", err);
+      Swal.fire({
+        icon: "error",
+        title: "Payment Initialization Failed",
+        text: err.message,
+        confirmButtonColor: "#F58634"
+      });
+    }
+  });
+});
+</script> -->
+
+<!-- <script>
+function parseJwt(token) {
+  try {
+    const base64Url = token.split(".")[1];
+    const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
+    return JSON.parse(window.atob(base64));
+  } catch (err) {
+    console.error("❌ Invalid token", err);
+    return null;
+  }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  const btn = document.getElementById("placeOrderBtn");
+  if (!btn) return console.error("❌ placeOrderBtn not found in DOM");
+
+  btn.addEventListener("click", async (e) => {
+    e.preventDefault();
+    console.log("🟢 Place Order clicked");
+
+    // Collect form values
+    const firstName = document.getElementById("firstName")?.value.trim();
+    const lastName = document.getElementById("lastName")?.value.trim();
+    const email = document.getElementById("email")?.value.trim();
+    const phone = document.getElementById("phone")?.value.trim();
+    const state = document.getElementById("state")?.value.trim();
+    const city = document.getElementById("city")?.value.trim();
+
+    if (!firstName || !lastName || !email || !phone || !state || !city) {
+      return Swal.fire({
+        icon: "warning",
+        title: "Missing Information",
+        text: "Please fill in all required fields.",
+        confirmButtonColor: "#F58634"
+      });
+    }
+
+    // Decode token
+    const token = localStorage.getItem("authToken");
+    const decoded = parseJwt(token);
+    const customerId = decoded?.id || decoded?._id || decoded?.userId;
+
+    if (!customerId) {
+      return Swal.fire({
+        icon: "warning",
+        title: "Login Required",
+        text: "You must be logged in to place an order.",
+        confirmButtonColor: "#F58634"
+      }).then(() => window.location.href = "./login.html");
+    }
+
+    // Load cart
+    const cart = JSON.parse(localStorage.getItem("site_cart_v1")) || [];
+    if (!cart.length) {
+      return Swal.fire({
+        icon: "warning",
+        title: "Empty Cart",
+        text: "Your cart is empty. Please add items before placing an order.",
+        confirmButtonColor: "#F58634"
+      });
+    }
+
+    // Format items & totals
+    const items = cart.map(item => ({
+      productId: item.id,
+      name: item.name,
+      image: item.image,
+      price: item.price,
+      quantity: item.quantity,
+      subTotal: item.price * item.quantity
+    }));
+
+    const originalPrice = items.reduce((acc, item) => acc + item.subTotal, 0);
+    const savings = Math.round(originalPrice * 0.05);
+    const estimatedTax = Math.round((originalPrice - savings) * 0.05);
+    const total = originalPrice - savings + estimatedTax;
+
+    // Step 1: Create order in backend
+    const orderPayload = {
+      customerId,
+      customerSnapshot: { firstName, lastName, email, phone, state, city },
+      items,
+      totalAmount: total,
+    };
+
+    console.log("🚀 Sending order payload:", orderPayload);
+
+    let orderData;
+    try {
+      const response = await fetch("http://localhost:3001/amazon/document/api/orders/create", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(orderPayload),
+      });
+
+      if (!response.ok) {
+        const text = await response.text();
+        throw new Error(`Backend returned HTTP ${response.status}: ${text}`);
+      }
+
+      orderData = await response.json();
+      console.log("🔵 Backend response:", orderData);
+
+      if (!orderData.success || !orderData.orderId) {
+        throw new Error(orderData.message || "Order creation failed");
+      }
+    } catch (err) {
+      console.error("❌ Backend error:", err);
+      return Swal.fire({
+        icon: "error",
+        title: "Order Failed",
+        text: err.message,
+        confirmButtonColor: "#F58634"
+      });
+    }
+
+    // Step 2: Initialize Paystack payment
+    const PAYSTACK_SECRET_KEY = "sk_test_93a85e660c1083402a5a972033a25a5112a0c331";
+    const PAYSTACK_URL = "https://api.paystack.co/transaction/initialize";
+    const reference = `ORDER-${orderData.orderId}-${Date.now()}`;
+
+    const paymentPayload = {
+      email,
+      amount: total * 100, // in kobo
+      currency: "NGN",
+      reference,
+      metadata: { orderId: orderData.orderId },
+      callback_url: "http://127.0.0.1:5501/landingpages/payment-confirmation.html"
+    };
+
+    console.log("🚀 Initializing Paystack with payload:", paymentPayload);
+
+    try {
+      const response = await fetch(PAYSTACK_URL, {
+        method: "POST",
+        headers: {
+          "Authorization": `Bearer ${PAYSTACK_SECRET_KEY}`,
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(paymentPayload)
+      });
+
+      if (!response.ok) {
+        const text = await response.text();
+        throw new Error(`Paystack returned HTTP ${response.status}: ${text}`);
+      }
+
+      const paystackData = await response.json();
+      console.log("🔵 Paystack response:", paystackData);
+
+      if (!paystackData.status || !paystackData.data?.authorization_url) {
+        throw new Error(paystackData.message || "Payment initialization failed");
+      }
+
+      Swal.fire({
+        icon: "success",
+        title: "Order Created!",
+        text: "Redirecting to Paystack for secure payment...",
+        showConfirmButton: false,
+        timer: 2000
+      }).then(() => window.location.href = paystackData.data.authorization_url);
+
+    } catch (err) {
+      console.error("❌ Paystack error:", err);
+      Swal.fire({
+        icon: "error",
+        title: "Payment Initialization Failed",
+        text: err.message,
+        confirmButtonColor: "#F58634"
+      });
+    }
+  });
+});
+</script> -->
+
+<script>
+function parseJwt(token) {
+  try {
+    const base64Url = token.split(".")[1];
+    const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
+    return JSON.parse(window.atob(base64));
+  } catch (err) {
+    console.error(":x: Invalid token", err);
+    return null;
+  }
+}
+document.addEventListener("DOMContentLoaded", () => {
+  const btn = document.getElementById("placeOrderBtn");
+  if (!btn) return console.error(":x: placeOrderBtn not found in DOM");
+  btn.addEventListener("click", async (e) => {
+    e.preventDefault();
+    console.log(":large_green_circle: Place Order clicked");
+    // Collect form values
+    const firstName = document.getElementById("firstName")?.value.trim();
+    const lastName = document.getElementById("lastName")?.value.trim();
+    const email = document.getElementById("email")?.value.trim();
+    const phone = document.getElementById("phone")?.value.trim();
+    const state = document.getElementById("state")?.value.trim();
+    const city = document.getElementById("city")?.value.trim();
+    const address = document.getElementById("address")?.value.trim();
+
+    if (!firstName || !lastName || !email || !phone || !state || !city || !address) {
+      return Swal.fire({
+        icon: "warning",
+        title: "Missing Information",
+        text: "Please fill in all required fields.",
+        confirmButtonColor: "#F58634"
+      });
+    }
+    // Decode token
+    const token = localStorage.getItem("authToken");
+    const decoded = parseJwt(token);
+    const customerId = decoded?.id || decoded?._id || decoded?.userId;
+    if (!customerId) {
+      return Swal.fire({
+        icon: "warning",
+        title: "Login Required",
+        text: "You must be logged in to place an order.",
+        confirmButtonColor: "#F58634"
+      }).then(() => window.location.href = "./login.html");
+    }
+    // Load cart
+    const cart = JSON.parse(localStorage.getItem("site_cart_v1")) || [];
+    if (!cart.length) {
+      return Swal.fire({
+        icon: "warning",
+        title: "Empty Cart",
+        text: "Your cart is empty. Please add items before placing an order.",
+        confirmButtonColor: "#F58634"
+      });
+    }
+    // Format items & totals
+    const items = cart.map(item => ({
+      productId: item.id,
+      name: item.name,
+      image: item.image,
+      price: item.price,
+      quantity: item.quantity,
+      subTotal: item.price * item.quantity
+    }));
+    const originalPrice = items.reduce((acc, item) => acc + item.subTotal, 0);
+    const savings = Math.round(originalPrice * 0.05);
+    const estimatedTax = Math.round((originalPrice - savings) * 0.05);
+    const total = originalPrice - savings + estimatedTax;
+    // Step 1: Create order in backend (which also initializes Paystack)
+    const orderPayload = {
+      customerId,
+      customerSnapshot: { firstName, lastName, email, phone, state, city, address },
+      items,
+      totalAmount: total,
+    };
+    console.log(":rocket: Sending order payload:", orderPayload);
+    try {
+      const response = await fetch("http://localhost:3001/amazon/document/api/orders/create", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(orderPayload),
+      });
+      if (!response.ok) {
+        const text = await response.text();
+        throw new Error(`Backend returned HTTP ${response.status}: ${text}`);
+      }
+      const orderData = await response.json();
+      console.log(":large_blue_circle: Backend response:", orderData);
+      if (!orderData.success || !orderData.authorizationUrl) {
+        throw new Error(orderData.message || "Order creation failed");
+      }
+      Swal.fire({
+        icon: "success",
+        title: "Order Created!",
+        text: "Redirecting to Paystack for secure payment...",
+        showConfirmButton: false,
+        timer: 2000
+      }).then(() => window.location.href = orderData.authorizationUrl);
+    } catch (err) {
+      console.error(":x: Order/Payment error:", err);
+      Swal.fire({
+        icon: "error",
+        title: "Order Failed",
+        text: err.message,
+        confirmButtonColor: "#F58634"
+      });
+    }
+  });
+});
+</script>
+
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  // Get stored user data from localStorage
+  const userEmail = localStorage.getItem("userEmail");
+  const userPhone = localStorage.getItem("userPhone");
+
+  // Prefill email input
+  const emailInput = document.getElementById("email");
+  if (emailInput && userEmail) {
+    emailInput.value = userEmail;
+    emailInput.readOnly = true; // Prevent editing but still submits
+  }
+
+  // Prefill phone input
+  const phoneInput = document.getElementById("phone");
+  if (phoneInput && userPhone) {
+    phoneInput.value = userPhone;
+    phoneInput.readOnly = true; // Prevent editing but still submits
+  }
+});
+  const fullName = localStorage.getItem("userName");
+
+  // Split full name into first and last name
+  let firstName = "";
+  let lastName = "";
+
+  if (fullName) {
+    const nameParts = fullName.trim().split(" ");
+    firstName = nameParts[0] || "";
+    lastName = nameParts.slice(1).join(" ") || "";
+  }
+
+  // Prefill First Name
+  const firstInput = document.getElementById("firstName");
+  if (firstInput && firstName) {
+    firstInput.value = firstName;
+    firstInput.readOnly = true; // user can’t change it
+  }
+
+  // Prefill Last Name
+  const lastInput = document.getElementById("lastName");
+  if (lastInput && lastName) {
+    lastInput.value = lastName;
+    lastInput.readOnly = true;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 </body>
 </html>

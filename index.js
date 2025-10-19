@@ -144,6 +144,8 @@ function logIn(event) {
         // ✅ Store login token
         localStorage.setItem("authToken", result.token);
         localStorage.setItem("userEmail", result.email || getEmail);
+        localStorage.setItem("userName", result.name);
+        localStorage.setItem("userPhone", result.phoneNumber);
 
         Swal.fire({
           icon: 'success',
@@ -199,12 +201,43 @@ function logOut() {
     }
   }
 }
+function trackCustomerActivity() {
+  const userEmail = localStorage.getItem("userEmail");
+  if (!userEmail) return;
+
+  async function updateActivity() {
+    try {
+      await fetch("http://localhost:3001/amazon/document/api/update-last-seen", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: userEmail, lastSeen: Date.now() })
+      });
+    } catch (err) {
+      console.error("Failed to update last seen:", err);
+    }
+  }
+
+  // Update every time user interacts
+  ["mousemove", "keydown", "click", "focus"].forEach(evt => {
+    window.addEventListener(evt, updateActivity);
+  });
+
+  // Update every 60 seconds even if idle
+  setInterval(updateActivity, 60000);
+
+  // Initial update on load
+  updateActivity();
+}
+
+document.addEventListener("DOMContentLoaded", trackCustomerActivity);
 
 function performLogout() {
   // clear session
   localStorage.removeItem("authToken");
   localStorage.removeItem("userEmail");
   localStorage.removeItem("site_cart_v1");
+  localStorage.removeItem("userName");
+  localStorage.removeItem("userPhone");
 
   // update UI immediately
   const userStatusDot = document.getElementById("userStatusDot");
@@ -409,7 +442,7 @@ async function fiveProducts() {
     const products = await response.json();
     console.log("Products:", products);
 
-    const carousels = ["carousel1", "carousel2"];
+    const carousels = ["carousel1", "carousel2", "carousel3", "carousel4"];
     const toShow = Array.isArray(products) ? products.slice(0, 5) : [];
 
     carousels.forEach(id => {
@@ -417,45 +450,50 @@ async function fiveProducts() {
       if (!productsRow) return;
 
       productsRow.innerHTML = "";
+
       toShow.forEach(product => {
         const productId = String(product._id || product.id || product.name.replace(/\s+/g, "-"));
         const imageSrc = Array.isArray(product.image) ? product.image[0] : product.image;
+
+        // ✅ Safely handle category (fallback to "Uncategorized")
+        const category = product.category?.name || product.category || "Uncategorized";
 
         const col = document.createElement("div");
         col.className = "col-12 col-md-6 col-lg-3 mb-4";
         col.innerHTML = `
           <div class="card h-100 shadow-sm">
-            <img src="${imageSrc}" alt="${product.name}"
-                 class="card-img-top product-img product-link px-lg-0 px-2"
-                 data-product-id="${productId}"
-                 onclick="goToProductDetails('${productId}'">
-
-            <div class="card-body">
-              <div class="d-flex justify-content-between mt-3">
-                <p>${product.name}</p>
-                <div>
-                  <a href="#"><i class="fa-regular fa-heart fa-2x" style="color: #0F0B0B;"></i></a>
+            <img 
+              src="${imageSrc || ''}"
+              alt="${escapeHtml(product.name)}"
+              class="card-img-top product-img product-link"
+              data-product-id="${productId}"
+              id="imageReveal"
+            >
+            <div class="card-body d-flex flex-column">
+              <div class="d-flex justify-content-between mt-1 mb-2">
+                <small class="text-muted">${escapeHtml(category)}</small>
+                <a href="#" class="text-dark"><i class="fa-regular fa-heart fa-lg"></i></a>
+              </div>
+              <p class="card-title fs-5 fw-bold mb-2">${escapeHtml(product.name)}</p>
+              <div class="d-flex justify-content-between align-items-center mb-3">
+                <div class="small text-muted">
+                  <i class="fa-solid fa-star me-1" style="color:#f58634"></i>5.0 (18)
                 </div>
+                <div class="fs-5">₦${Number(product.price || 0).toLocaleString()}</div>
               </div>
-
-              <p class="card-title fs-5 fw-bold">${product.name}</p>
-
-              <div class="d-flex justify-content-between">
-                <p class="fs-5"><i class="fa-solid fa-star me-2" style="color: #F58634;"></i>5.0 (18)</p>
-                <p class="fs-5">₦${Number(product.price).toLocaleString()}</p>
-              </div>
-
-              <button type="button"
-                class="cart-btn btn btn-outline-success w-100 py-3 fs-5"
+              <button 
+                type="button"
+                class="cart-btn btn btn-outline-success mt-auto w-100 py-3"
                 data-product-id="${productId}"
-                data-product-name="${product.name}"
+                data-product-name="${escapeHtml(product.name)}"
                 data-product-price="${product.price}"
-                data-product-image="${imageSrc}">
+                data-product-image="${imageSrc || ''}">
                 Add To Cart
               </button>
             </div>
           </div>
         `;
+
         productsRow.appendChild(col);
       });
 
@@ -466,6 +504,14 @@ async function fiveProducts() {
     console.error("Error loading products:", error);
   }
 }
+
+// === Helper to safely escape text ===
+function escapeHtml(text) {
+  const div = document.createElement("div");
+  div.textContent = text || "";
+  return div.innerHTML;
+}
+
 
 async function backFiveProducts() {
   try {
@@ -486,41 +532,42 @@ async function backFiveProducts() {
       toShow.forEach(product => {
         const productId = String(product._id || product.id || product.name.replace(/\s+/g, "-"));
         const imageSrc = Array.isArray(product.image) ? product.image[0] : product.image;
+          // ✅ Safely handle category (fallback to "Uncategorized")
+        const category = product.category?.name || product.category || "Uncategorized";
 
         const col = document.createElement("div");
         col.className = "col-12 col-md-6 col-lg-3 mb-4";
         col.innerHTML = `
           <div class="card h-100 shadow-sm">
-            <img src="${imageSrc}" alt="${product.name}"
-                 class="card-img-top product-img product-link px-lg-0 px-2"
-                 data-product-id="${productId}"
-                 onclick="goToProductDetails('${productId}')">
-
-            <div class="card-body">
-              <div class="d-flex justify-content-between mt-3">
-                <p>${product.name}</p>
-                <div>
-                  <a href="#"><i class="fa-regular fa-heart fa-2x" style="color: #0F0B0B;"></i></a>
-                </div>
-              </div>
-
-              <p class="card-title fs-5 fw-bold">${product.name}</p>
-
-              <div class="d-flex justify-content-between">
-                <p class="fs-5"><i class="fa-solid fa-star me-2" style="color: #F58634;"></i>5.0 (18)</p>
-                <p class="fs-5">₦${Number(product.price).toLocaleString()}</p>
-              </div>
-
-              <button type="button"
-                class="cart-btn btn btn-outline-success w-100 py-3 fs-5"
-                data-product-id="${productId}"
-                data-product-name="${product.name}"
-                data-product-price="${product.price}"
-                data-product-image="${imageSrc}">
-                Add To Cart
-              </button>
-            </div>
+        <img 
+          src="${Array.isArray(product.image) ? product.image[0] : (product.image || '')}"
+          alt="${escapeHtml(product.name)}"
+          class="card-img-top product-img product-link"
+          data-product-id="${productId}"
+          id="imageReveal"
+        >
+        <div class="card-body d-flex flex-column">
+          <div class="d-flex justify-content-between mt-1 mb-2">
+                            <small class="text-muted">${escapeHtml(category)}</small>
+            <a href="#" class="text-dark"><i class="fa-regular fa-heart fa-lg"></i></a>
           </div>
+          <p class="card-title fs-5 fw-bold mb-2">${escapeHtml(product.name)}</p>
+          <div class="d-flex justify-content-between align-items-center mb-3 ">
+            <div class="small text-muted"><i class="fa-solid fa-star me-1" style="color:#f58634"></i>5.0 (18)</div>
+            <div class="fs-5">₦${Number(product.price || 0).toLocaleString()}</div>
+          </div>
+
+          <button 
+            type="button"
+            class="cart-btn btn btn-outline-success mt-auto w-100 py-3"
+            data-product-id="${productId}"
+            data-product-name="${escapeHtml(product.name)}"
+            data-product-price="${product.price}"
+            data-product-image="${Array.isArray(product.image) ? product.image[0] : (product.image || '')}">
+            Add To Cart
+          </button>
+        </div>
+      </div>
         `;
         productsRow.appendChild(col);
       });
@@ -532,6 +579,11 @@ async function backFiveProducts() {
     console.error("Error loading products:", error);
   }
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+  backFiveProducts();
+});
+
 
 
 
@@ -584,6 +636,8 @@ function saveCart() {
   updateCartCount();
   syncCartButtons();
   renderCartPage();
+    renderOrderSummary();
+
   document.dispatchEvent(new CustomEvent("cartUpdated", { detail: { cart } }));
 }
 
@@ -687,6 +741,8 @@ function renderProducts(products, containerId = "productsRow") {
   container.innerHTML = "";
   products.forEach(product => {
     const productId = String(product._id || product.id || product.name.replace(/\s+/g, "-"));
+      // ✅ Safely handle category (fallback to "Uncategorized")
+        const category = product.category?.name || product.category || "Uncategorized";
 
     const col = document.createElement("div");
     col.className = "col-md-6 col-lg-3 mb-4";
@@ -702,7 +758,8 @@ function renderProducts(products, containerId = "productsRow") {
         >
         <div class="card-body d-flex flex-column">
           <div class="d-flex justify-content-between mt-1 mb-2">
-            <small class="text-muted">Category</small>
+                                       <small class="text-muted">${escapeHtml(category)}</small>
+
             <a href="#" class="text-dark"><i class="fa-regular fa-heart fa-lg"></i></a>
           </div>
           <p class="card-title fs-5 fw-bold mb-2">${escapeHtml(product.name)}</p>
@@ -743,40 +800,94 @@ function renderCartPage() {
     return;
   }
 
-  cart.forEach(item => {
+  // ✅ Shopping cart title (shows cart length)
+  const title = document.createElement("p");
+  title.className = "bill fw-bold fs-4 text-dark";
+  title.textContent = `Shopping Cart (${cart.length} items)`;
+  container.appendChild(title);
+
+  cart.forEach((item, index) => {
     const lineTotal = Number(item.price || 0) * Number(item.quantity || 1);
 
     const row = document.createElement("div");
-    row.className = "d-flex align-items-center justify-content-between p-2 border-bottom flex-wrap";
+    row.className = "";
     row.style.gap = "12px";
     row.innerHTML = `
-      <div class="d-flex align-items-center" style="gap:12px;">
-        <img src="${item.image || "https://via.placeholder.com/80"}" alt="${escapeHtml(item.name)}" width="80" height="60" style="object-fit:cover;">
-        <div>
-          <strong>${escapeHtml(item.name)}</strong><br>
-          ₦${lineTotal.toLocaleString()}
+      <div class="d-flex justify-content-between item-btn pb-3">
+        <p>Item ${index + 1}</p>   <!-- ✅ Dynamic item index -->
+        <div class="d-flex item-btn2">
+          <div class="btn-later fs">
+            <button>Save for later</button>
+            <button class="ms-4 mt-2 remove-btn" data-id="${item.id}">Remove</button>
+          </div>
+          <div class="d-flex align-items-center increament-div item-btn3">
+            <p class="mx-lg-5 mx-md-5 mt-2 fs-5 fw-bold">Qty:</p>
+            <div class="input-group input-group-sm" style="width:110px;">
+              <button class="btn btn-outline-secondary qty-btn" data-id="${item.id}" data-change="-1">−</button>
+              <input type="text" readonly class="form-control text-center" value="${item.quantity}">
+              <button class="btn btn-outline-secondary qty-btn" data-id="${item.id}" data-change="1">+</button>
+            </div>
+          </div>
+        </div>
+      </div> 
+      <div class="d-flex image-no mt-4 mb-4">
+        <div class="imagehousing">
+          <img src="${item.image || "https://via.placeholder.com/80"}" alt="${escapeHtml(item.name)}">
+        </div>
+        <div class="ms-5 mt-0">
+          <strong class="bill fw-bold text-dark fs-5">${escapeHtml(item.name)}</strong><br>
+          <p class="fs-5">Product ID: ${escapeHtml(item.id)}</p>
+          <p class="fs-5">₦${lineTotal.toLocaleString()}</p>
           <small class="text-muted d-block">(₦${Number(item.price || 0).toLocaleString()} each)</small>
         </div>
-      </div>
-
-      <div class="d-flex align-items-center" style="gap:10px;">
-        <div class="input-group input-group-sm" style="width:110px;">
-          <button class="btn btn-outline-secondary qty-btn" data-id="${item.id}" data-change="-1">−</button>
-          <input type="text" readonly class="form-control text-center" value="${item.quantity}">
-          <button class="btn btn-outline-secondary qty-btn" data-id="${item.id}" data-change="1">+</button>
-        </div>
-
-        <button class="btn btn-danger btn-sm remove-btn" data-id="${item.id}">
-          <i class="fa-solid fa-trash"></i> Remove
-        </button>
       </div>
     `;
     container.appendChild(row);
   });
 
-  const total = cart.reduce((s, it) => s + (Number(it.price || 0) * Number(it.quantity || 0)), 0);
+  // ✅ Calculate total
+  const total = cart.reduce(
+    (s, it) => s + (Number(it.price || 0) * Number(it.quantity || 0)),
+    0
+  );
   if (totalEl) totalEl.textContent = `₦${total.toLocaleString()}`;
 }
+
+
+function renderOrderSummary() {
+  const summaryEl = document.getElementById("orderSummary");
+  if (!summaryEl) return;
+  if (!cart.length) {
+    summaryEl.innerHTML = `
+      <p>Your cart is empty</p>
+      <h4>Total: ₦0</h4>
+    `;
+    return;
+  }
+  // 1. Calculate values
+  const originalPrice = cart.reduce(
+    (sum, item) => sum + (Number(item.price || 0) * Number(item.quantity || 1)),
+    0
+  );
+  const savings = originalPrice * 0.05; // 5% savings
+  const subtotal = originalPrice - savings;
+  const estimatedTax = subtotal * 0.05; // 5% tax
+  const total = subtotal + estimatedTax;
+  // 2. Render summary
+  summaryEl.innerHTML = `
+  <p class= "bill fw-bold fs-4 text-dark">Order Summary</p>
+    <div class="border-top pt-3">
+      <p class= "fs-5 mb-3">Original Price: <span class="float-end">₦${originalPrice.toLocaleString()}</span></p>
+      <p class= "fs-5 mb-3">Savings (5%): <span class="float-end text-success">-₦${savings.toLocaleString()}</span></p>
+      <p class= "fs-5 mb-3">Shipping: <span class="float-end">FREE</span></p>
+      <p class= "fs-5 mb-3">Estimated Sales Tax (5%): <span class="float-end">₦${estimatedTax.toLocaleString()}</span></p>
+      <hr>
+      <h5 class= "mt-4 text-dark">Total: <span class="float-end fw-bold">₦${total.toLocaleString()}</span></h5>
+    </div>
+    <button class="pay-btn w-100 fs-5 mt-5" onclick="checkOut()">Proceed to Check Out</button>
+  `;
+}
+
 
 // -------------------- Fetching --------------------
 async function loadProductsFromApi() {
@@ -857,6 +968,7 @@ document.addEventListener("DOMContentLoaded", () => {
   syncCartButtons();
   renderCartPage();
   loadProductsFromApi();
+  renderOrderSummary();
 });
 
 window.addEventListener("storage", (e) => {
@@ -865,6 +977,119 @@ window.addEventListener("storage", (e) => {
     updateCartCount();
     syncCartButtons();
     renderCartPage();
+    renderOrderSummary()
   }
 });
 
+
+  const countrySelect = document.getElementById("country");
+  const stateSelect = document.getElementById("state");
+  const citySelect = document.getElementById("city");
+  // Load countries
+  async function loadCountries() {
+    try {
+      const res = await fetch("https://restcountries.com/v3.1/all?fields=name");
+      const data = await res.json();
+      const countries = Array.isArray(data) ? data : [];
+      countries.sort((a, b) => a.name.common.localeCompare(b.name.common));
+      countries.forEach(c => {
+        const opt = document.createElement("option");
+        opt.value = c.name.common;
+        opt.textContent = c.name.common;
+        countrySelect.appendChild(opt);
+      });
+      // :white_check_mark: Auto-select Nigeria if available
+      const defaultCountry = "Nigeria";
+      const nigeriaOption = [...countrySelect.options].find(
+        opt => opt.value === defaultCountry
+      );
+      if (nigeriaOption) {
+        countrySelect.value = defaultCountry;
+        await loadStates(defaultCountry); // load states immediately
+      }
+    } catch (err) {
+      console.error("Error loading countries:", err);
+    }
+  }
+  // Load states when country is selected
+  async function loadStates(country) {
+    try {
+      stateSelect.innerHTML = `<option value="">Loading...</option>`;
+      stateSelect.disabled = true;
+      citySelect.innerHTML = `<option value="">Select City</option>`;
+      citySelect.disabled = true;
+      const res = await fetch("https://countriesnow.space/api/v0.1/countries/states", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ country })
+      });
+      const data = await res.json();
+      stateSelect.innerHTML = `<option value="">Select State</option>`;
+      if (data.data && data.data.states) {
+        data.data.states.forEach(s => {
+          const opt = document.createElement("option");
+          opt.value = s.name;
+          opt.textContent = s.name;
+          stateSelect.appendChild(opt);
+        });
+      }
+      stateSelect.disabled = false;
+    } catch (err) {
+      console.error("Error loading states:", err);
+      stateSelect.innerHTML = `<option value="">No states found</option>`;
+    }
+  }
+  // Load cities when state is selected
+async function loadCities(country, state) {
+  try {
+    citySelect.innerHTML = `<option value="">Loading...</option>`;
+    citySelect.disabled = true;
+    const res = await fetch("https://countriesnow.space/api/v0.1/countries/state/cities", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ country, state })
+    });
+    const data = await res.json();
+    // :white_check_mark: log AFTER defining "data"
+    console.log("Fetching cities for:", country, state, data);
+    citySelect.innerHTML = `<option value="">Select City</option>`;
+    if (data.data && Array.isArray(data.data) && data.data.length > 0) {
+      data.data.forEach(city => {
+        const opt = document.createElement("option");
+        opt.value = city;
+        opt.textContent = city;
+        citySelect.appendChild(opt);
+      });
+      citySelect.disabled = false;
+    } else {
+      citySelect.innerHTML = `<option value="">No cities found</option>`;
+    }
+  } catch (err) {
+    console.error("Error loading cities:", err);
+    citySelect.innerHTML = `<option value="">No cities found</option>`;
+  }
+}
+  // Event listeners
+  countrySelect.addEventListener("change", e => {
+    const country = e.target.value;
+    if (country) {
+      loadStates(country);
+    } else {
+      stateSelect.innerHTML = `<option value="">Select State</option>`;
+      stateSelect.disabled = true;
+      citySelect.innerHTML = `<option value="">Select City</option>`;
+      citySelect.disabled = true;
+    }
+  });
+  stateSelect.addEventListener("change", e => {
+    const state = e.target.value;
+    const country = countrySelect.value;
+    if (state && country) {
+      loadCities(country, state);
+    } else {
+      citySelect.innerHTML = `<option value="">Select City</option>`;
+      citySelect.disabled = true;
+    }
+  });
+  // Initial load
+  loadCountries();

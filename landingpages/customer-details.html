@@ -4,14 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
      <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/9.1.0/mdb.min.css" rel="stylesheet"/>
     <link rel="stylesheet" href="../style.css">
 </head>
 <body>
-  
-    <!-- navigation bar starts here -->
+     <!-- navigation bar starts here -->
 <nav class="navbar navbar-expand-lg  px-lg-5">
   <div class="container-fluid">
     <a class="navbar-brand" href="../index.html"><img class="me-lg-5" src="../images/Foodies logo without Banner 1.png" alt=""></a>
@@ -39,8 +38,14 @@
          <li class="nav-item">
           <a class="nav-link " href="#">Blog</a>
         </li>
-         <li class="nav-item">
-          <a class="nav-link " href="#">FAQs</a>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            FAQs
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item  fs-5 fw-bold" href="#">About You</a></li>
+            
+          </ul>
         </li>
       </ul>
       <form class="d-flex" role="search">
@@ -48,15 +53,14 @@
          <a class="link-secondary ms-3" href="#">
         <i class="fa-regular fa-heart fa-2x " style="color: #0f0b0b;"></i>
       </a>
-        <!-- Navbar with cart badge -->
-  <a href="./cart.html" class="ms-3 position-relative">
-    <i class="fa-solid fa-bag-shopping fa-2x" style="color: #0f0b0b;"></i>
-    <span id="cartCount" 
-          class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning">
-      0
-    </span>
-  </a>
-        <a href="./login.html" id="userLink">
+     <!-- Navbar Cart Icon -->
+        <a href="./cart.html" class="ms-3 position-relative">
+          <i class="fa-solid fa-bag-shopping fa-2x" style="color: #0f0b0b;"></i>
+          <span id="cartCount" 
+                class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning">
+            0
+          </span>
+       <a href="./login.html" id="userLink">
         <div class="d-inline-flex position-relative ms-3">
           <span id="userStatusDot" class="position-absolute top-0 start-100 translate-middle p-1 bg-success border border-light rounded-circle" style="display:none;">
             <span class="visually-hidden">Logged in</span>
@@ -71,35 +75,48 @@
 </nav>
 <!-- navigation bar ends here -->
 
-
-<!-- shopping cart section here -->
-<div class="row mt-5 px-lg-5" >
-    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-7 col-xl-7">
-      <div id="cartItems">
-
-      </div>
-  </div>
-     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-5 col-xl-5 px-lg-5">
-       <div id="orderSummary"></div>
-          
-    </div>
-</div>
- <!-- end of shopping cart  -->
-
- 
-<section class="px-lg-5 px-3 mt-5">
-    <p class="fw-bold display-2 text-dark about">Similar Products</p>
-    <div class="d-flex justify-content-between bttext">
-      <p class="fs-5">Browse our most popular snacks and make your day more beautiful and glorious.</p>
-      <button class="done-btn fs-5 fadeUp" id="fancy">Browse All</button>
-    </div>
-     <div class="bbb px-lg-5 mt-5">
-        <div class="carousel" id="backFive">
-    
+<section class="px-lg-5 mt-5">
+    <div class="row">
+        <div class="col-sm-12 col-md-6 col-lg-4">
+            <p>First name</p>
+            <div class="details-wrapper">
+                <p class="fw-bold fs-5">Folayeni</p>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-6 col-lg-4">
+            <P>Last name</P>
+            <div class="details-wrapper">
+                <p class="fw-bold fs-5">Folayeni</p>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-6 col-lg-4">
+            <p>Your Email</p>
+            <div class="details-wrapper">
+                <p class="fw-bold fs-5">unstablesteve22@gmail.com</p>
+            </div>
         </div>
     </div>
-  </section>
-
+      <div class="row">
+        <div class="col-sm-12 col-md-6 col-lg-4">
+            <p>Phone Number</p>
+            <div class="details-wrapper">
+                <p class="fw-bold fs-5">0919292929292</p>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-6 col-lg-4">
+            <P>Date of Birth</P>
+            <div class="details-wrapper">
+                <p class="fw-bold fs-5">Folayeni</p>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-6 col-lg-4">
+            <p>Your Email</p>
+            <div class="details-wrapper">
+                <p class="fw-bold fs-5">unstablesteve22@gmail.com</p>
+            </div>
+        </div>
+    </div>
+</section>
 
 <!-- Footer -->
 <footer class="text-center text-lg-start text-muted mt-5">
@@ -208,15 +225,11 @@
 
 
 
-  <!-- <h1>Shopping Cart</h1>
-  <div id="cartItems"></div> -->
-
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
      <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/js/all.min.js" integrity="sha512-b+nQTCdtTBIRIbraqNEwsjB6UvL3UEMkXnhzd8awtCYh0Kcsjl9uEgwVFVbhoj3uu1DO1ZMacNvLoyJJiNfcvg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/9.1.0/mdb.umd.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/9.1.0/mdb.umd.min.js"></script>
      <script src="../index.js"></script>
-     <script src="../cart.js"></script>
 </body>
 </html>
