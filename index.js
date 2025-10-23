@@ -765,7 +765,7 @@ function renderProducts(products, containerId = "productsRow") {
           <p class="card-title fs-5 fw-bold mb-2">${escapeHtml(product.name)}</p>
           <div class="d-flex justify-content-between align-items-center mb-3 ">
             <div class="small text-muted"><i class="fa-solid fa-star me-1" style="color:#f58634"></i>5.0 (18)</div>
-            <div class="fs-5">₦${Number(product.price || 0).toLocaleString()}</div>
+            <div class="fw-bold text-dark">₦${Number(product.price || 0).toLocaleString()}</div>
           </div>
 
           <button 

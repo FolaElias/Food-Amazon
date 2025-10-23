@@ -674,6 +674,8 @@ br {
     height: auto;
   }
 
+ 
+
 }
 
 @media (max-width: 900px) {
@@ -687,7 +689,7 @@ br {
 }
 
 @media screen and (min-width: 1000px) and (max-width:1150px) {
-  nav {
+  /* nav {
     width: 100%;
   }
   nav ul li {
@@ -697,7 +699,7 @@ br {
 
   nav img{
     margin: 0px;
-  }
+  } */
   .hero-section br {
     display: none;
   }
@@ -724,3 +726,70 @@ br {
 
   
 }
+@media screen and (max-width: 1366px) {
+  .navbar .container,
+  .navbar .container-fluid {
+    max-width: 100%;
+    padding: 0 1rem;
+  }
+
+  .navbar-nav {
+    gap: 0.5rem;
+  }
+
+  .navbar-nav .nav-link {
+    font-size: 0.9rem;
+  }
+
+  .navbar form .fa-magnifying-glass {
+    font-size: 1rem;
+  }
+
+  .navbar form .fa-heart,
+  .navbar form .fa-user,
+  .navbar form .fa-bag-shopping {
+    font-size: 1.3rem;
+  }
+
+  .navbar form .btn {
+    font-size: 0.85rem;
+    padding: 0.45rem 0.9rem;
+  }
+
+  /* Center nav links when collapsed */
+  .navbar-collapse {
+    text-align: start;
+  }
+}
+
+
+
+/* Center only the form section on small screens */
+/* Center only the form section on small screens */
+@media screen and (max-width: 991.98px) {
+  .navbar .collapse .d-flex {
+    justify-content: center !important; 
+    align-items: center !important;     
+    flex-wrap: wrap;                   
+    gap: 30px;                          
+    margin-top: 1rem;                   
+  }
+
+  /* Optional: make the Contact Us button full width on mobile */
+  .navbar .collapse .d-flex .btn {
+    width: 100%;
+    max-width: 250px;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
